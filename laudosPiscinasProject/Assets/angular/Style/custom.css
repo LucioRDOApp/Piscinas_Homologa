@@ -1,0 +1,26 @@
+﻿ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-menu a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+    padding-top: 10px;
+    padding-left: 0px;
+}
+
+.main-menu li ul a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.container {
+    padding-top: 25px;
+}

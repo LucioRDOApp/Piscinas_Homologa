@@ -1,0 +1,44 @@
+﻿<section ng-controller="RelatorioProdutividadeController as controller" ng-init="controller.carregarStatusTarefa()">
+
+    <div class="panel-heading">
+        <h3>Relatório de Produtividade</h3>
+    </div>
+
+    <div class="panel">
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data Inicial</label>
+                <input type="text" class="datepicker-here form-control txbDataInicial" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataInicial">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data Final</label>
+                <input type="text" class="datepicker-here form-control txbDataFinal" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataFinal">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Status</label>
+                <select class="form-control" ng-model="controller.filtroParam.statusTarefa" ng-options="sts.id as sts.nome for sts in controller.statusTarefa"></select>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.gerarDocumento()">
+                    <i class="fa fa-plus"></i>
+                    Gerar Relatório
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</section>

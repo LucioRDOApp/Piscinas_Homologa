@@ -1,0 +1,367 @@
+﻿<div class="panel-heading">
+    <h3>Etapa</h3>
+</div>
+
+<section ng-controller="EtapaController as controller" ng-init="controller.obterEtapa()">
+
+    <form id="form-cadastro-obra" class="panel">
+
+        <div class="col-lg-10 col-md-8 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Nome<span style="color:red">*</span></label>
+                <input type="text" class="form-control" maxlength="100" ng-model="controller.cadastroParam.titulo">
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Nº Ordem<span style="color:red">*</span></label>
+                <input type="text" class="form-control" maxlength="5" ng-model="controller.cadastroParam.ordem" numeric-only>
+            </div>
+        </div>
+
+    </form>
+   
+    <div class="col-xs-12 no-padding">
+
+        <div class="pull-right">
+
+            <button class="btn btn-blue btn-block-xs" onclick="window.history.back()">
+                <!--ng-click="controller.voltar()"--><!--<i class="icon-close" aria-hidden="true"></i>-->
+                <i class="fa fa-arrow-left"></i>
+                Voltar
+            </button>
+
+            <button class="btn btn-blue btn-block-xs" ng-hide="controller.desabilitarCamposObra" ng-disabled="controller.desabilitarSalvarObra" ng-click="controller.salvar()">
+                <i class="icon-check" aria-hidden="true"></i>
+                SALVAR
+            </button>
+
+        </div>
+    </div>
+    <div class="modal fade" id="novo-colaborador">
+        <form id="form-cadastro-colaborador">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="icon-close"></i>
+                        </button>
+                        <div class="panel-heading">
+                            <h4>COLABORADOR</h4>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Nome<span style="color:red">*</span></label>
+                                <input type="text" maxlength="50" class="form-control txbNomeColaborador" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.nome">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">Cargo<span style="color:red">*</span></label>
+                                <select class="form-control txbCargoColaborador" ng-model="controller.cadastroParam.colaboradorObj.cargo" ng-disabled="controller.desabilitarCamposColaborador2" ng-options="car.id as car.nome for car in controller.cargos"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">CPF<span style="color:red">*</span></label>
+                                <input type="text" validate="minlength[14],maxlength[14]" ui-mask="999.999.999-99" maxlength="14" class="form-control txbCpfColaborador" ng-blur="controller.completarColaborador()" ng-disabled="controller.desabilitarCamposColaborador2" ng-model="controller.cadastroParam.colaboradorObj.cpf">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">Sexo</label>
+                                <select class="form-control ddlSexoColaborador" ng-model="controller.cadastroParam.colaboradorObj.sexo" ng-disabled="controller.desabilitarCamposColaborador" ng-options="sx.id as sx.nome for sx in controller.sexo"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">Perfil do Colaborador<span style="color:red">*</span></label>
+                                <select class="form-control ddlPerfilColaborador" ng-model="controller.cadastroParam.colaboradorObj.grupo" ng-disabled="controller.desabilitarCamposColaborador2" ng-options="opt.id as opt.nome for opt in controller.grupos"></select>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Data de Nascimento<span style="color:red">*</span></label>
+                                <input type="text" class="datepicker-here form-control dataNascimento" validate="dateBR, date" placeholder="dd/mm/aaaa" ng-disabled="controller.desabilitarCamposColaborador" data-language='pt-BR' value="" ng-model="controller.cadastroParam.colaboradorObj.dataNascimento">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Telefone Principal<span style="color:red">*</span></label>
+                                <input type="text" class="form-control txbTelefonePrincipalColaborador" ui-mask="(99)99999-9999" validate="minlength[10], maxlength[14], phone-validator" maxlength="14" placeholder="" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.telefonePrincipal">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Telefone Secundário</label>
+                                <input type="text" class="form-control txbTelefoneSecundarioColaborador" ui-mask="(99)99999-9999" validate="minlength[10], maxlength[14], phone-validator" maxlength="14" placeholder="" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.telefoneSecundario">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-8 col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label">E-mail<span style="color:red">*</span></label>
+                                <input type="text" class="form-control txbEmailColaborador" maxlength="50" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.email">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">CREA</label>
+                                <input type="text" class="form-control txbCreaColaborador" ng-disabled="controller.desabilitarCamposColaborador" maxlength="20" ng-model="controller.cadastroParam.colaboradorObj.crea">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-8 col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label">Logradouro<span style="color:red">*</span></label>
+                                <input type="text" class="form-control txbLogradouroColaborador" maxlength="50" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.logradouro">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Número</label>
+                                <input type="text" class="form-control txbNumeroEnderecoColaborador" maxlength="5" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.numeroEndereco">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Complemento</label>
+                                <input type="text" class="form-control txbComplementoColaborador" maxlength="50" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.complemento">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Bairro</label>
+                                <input type="text" class="form-control txbBairroColaborador" maxlength="50" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.bairro">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">UF<span style="color:red">*</span></label>
+                                <select class="form-control ddluf" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.uf" ng-change="controller.carregaListaMunicipioColaborador('cadastro')" ng-options="opt.idUF as opt.uf for opt in controller.ufsColaborador"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">Município<span style="color:red">*</span></label>
+                                <select class="form-control ddlmunicipio" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.idMunicipio" ng-options="mun.idMunicipio as mun.municipio for mun in controller.municipiosColaborador"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">CEP</label>
+                                <input type="text" class="form-control txbCepColaborador" ui-mask="99999-999" maxlength="9" ng-disabled="controller.desabilitarCamposColaborador" placeholder="" ng-model="controller.cadastroParam.colaboradorObj.cep">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Data da Contratação</label>
+                                <input type="text" class="datepicker-here form-control dataContratacao" ng-disabled="controller.desabilitarCamposColaborador2" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="controller.cadastroParam.colaboradorObj.dataContratacao">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Senha<span style="color:red">*</span></label>
+                                <input type="password" class="form-control txbSenhaColaborador" maxlength="20" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.senha">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Confirmação Senha<span style="color:red">*</span></label>
+                                <input type="password" class="form-control txbSenhaColaborador" maxlength="20" ng-disabled="controller.desabilitarCamposColaborador" ng-model="controller.cadastroParam.colaboradorObj.confirmacaoSenha">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-simple" data-dismiss="modal">
+                                <i class="icon-close" aria-hidden="true" ng-click="controller.limparModalColaborador()"></i>
+                                Cancelar
+                            </button>                            
+                            <button type="button" class="btn btn-default btn-simple" ng-disabled="controller.desabilitarCamposColaborador2" ng-click="controller.adicionarColaborador()">
+                                <i class="icon-check" aria-hidden="true"></i>
+                                Adicionar
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="novo-equipamento">
+        <form id="form-cadastro-equipamento">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="icon-close"></i>
+                        </button>
+                        <div class="panel-heading">
+                            <h4>Equipamento</h4>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Tipo de Equipamento<span style="color:red">*</span></label>
+                                <input type="text" class="form-control"  maxlength="50" ng-disabled="controller.desabilitarCamposEquipamento" ng-model="controller.cadastroParam.equipamentoObj.descricao">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Marca<span style="color:red">*</span></label>
+                                <select class="form-control" maxlength="50" ng-disabled="controller.habilitarCamposEquipamento" ng-model="controller.cadastroParam.equipamentoObj.marca" ng-options="tp.id as tp.nome for tp in controller.marcas"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Modelo<span style="color:red">*</span></label>
+                                <select class="form-control" maxlength="50" ng-disabled="controller.habilitarCamposEquipamento" ng-model="controller.cadastroParam.equipamentoObj.modelo" ng-options="tp.id as tp.nome for tp in controller.modelos"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">Tipo de Aquisição<span style="color:red">*</span></label>
+                                <select class="form-control" ng-disabled="controller.desabilitarCamposEquipamento" ng-model="controller.cadastroParam.equipamentoObj.tipoAquisicao" ng-options="tp.id as tp.nome for tp in controller.tipoAquisicao"></select>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Data da Aquisição<span style="color:red">*</span></label>
+                                <input type="text" ng-disabled="controller.desabilitarCamposEquipamento" ui-mask="99/99/9999" model-view-value="true" class="datepicker-here form-control dataAquisicao" data-language='pt-BR' value="" ng-model="controller.cadastroParam.equipamentoObj.dataAquisicao">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Fornecedor/Fabricante<span style="color:red">*</span></label>
+                                <input type="text" ng-disabled="controller.desabilitarCamposEquipamento"  maxlength="50" class="form-control" ng-model="controller.cadastroParam.equipamentoObj.fabricanteFornecedor">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Contato<span style="color:red">*</span></label>
+                                <input type="text" ng-disabled="controller.desabilitarCamposEquipamento" maxlength="50" class="form-control" ng-model="controller.cadastroParam.equipamentoObj.contato">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Telefone<span style="color:red">*</span></label>
+                                <input type="text" ng-disabled="controller.desabilitarCamposEquipamento" validate="minlength[10], maxlength[15], phone-validator" ui-mask="(99)99999-9999" maxlength="14" class="form-control" placeholder="" ng-model="controller.cadastroParam.equipamentoObj.telefone">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-simple" data-dismiss="modal" ng-click="controller.limparModalEquipamento()">
+                                <i class="icon-close" aria-hidden="true"></i>
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-default btn-simple" ng-disabled="controller.desabilitarCamposEquipamento" ng-click="controller.adicionarEquipamento()">
+                                <i class="icon-check" aria-hidden="true"></i>
+                                Adicionar
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        $('.ddlContratante').attr('disabled', 'disabled');
+        $('.ddlContratada').attr('disabled', 'disabled');
+
+        $('input[type=radio][name=optionsRadios]').change(function () {
+            if (this.value == 't') {
+                $('.ddlContratante').removeAttr('disabled');
+                $('.ddlContratada').attr('disabled', 'disabled');
+            }
+            else if (this.value == 'd') {
+                $('.ddlContratada').removeAttr('disabled');
+                $('.ddlContratante').attr('disabled', 'disabled');
+            }
+        });
+    });
+
+</script>

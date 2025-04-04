@@ -1,0 +1,101 @@
+﻿<section ng-controller="HistoricoAcessoController as controller" ng-init="controller.carregarLista(1);">
+
+    <div class="panel-heading">
+        <h3>Histórico de acesso</h3>
+    </div>
+
+    <div class="panel">
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Data<span style="color:red">*</span></label>
+                <input type="text" class="datepicker-here form-control txbefe_data" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="controller.filtroParam.data_login">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">CPF</label>
+                <input type="text" class="form-control" ui-mask="999.999.999-99" ng-model="controller.filtroParam.col_nr_cpf">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Nome</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.col_nm_colaborador">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">E-Mail</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.col_ds_email">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.carregarLista(1)">
+                    <i class="fa fa-search"></i>
+                    PESQUISAR
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="lista-tarefas">
+        <label ng-hide="controller.pagedlist.list.length > 0" class="col-xs-12 no-padding" style="text-align:center;">Nenhum registro encontrado.</label>
+        <div class="tabela table-responsive" ng-hide="controller.pagedlist.list.length == 0">
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th class="fadeout-xs">
+                            Data
+                        </th>
+                        <th class="fadeout-xs">
+                            CPF
+                        </th>
+                        <th class="fadeout-xs">
+                            Nome
+                        </th>
+                        <th class="fadeout-xs">
+                            E-Mail
+                        </th>
+                        <th class="fadeout-xs">
+                            Obra
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="historicologin in controller.pagedlist.list">
+                    <tr>
+                        <td class="fadeout-xs">
+                            {{historicologin.data_login | date:'dd/MM/yyyy hh:mm:ss'}}
+                        </td>
+                        <td class="fadeout-xs">
+                            {{controller.cpfFilter(historicologin.col_nr_cpf)}}
+                        </td>
+                        <td class="fadeout-xs">
+                            {{historicologin.col_nm_colaborador}}
+                        </td>
+                        <td class="fadeout-xs">
+                            {{historicologin.col_ds_email}}
+                        </td>
+                        <td class="fadeout-xs">
+                            {{historicologin.obr_ds_obra}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <ul class="pull-right pagination">
+                <li ng-repeat="page in controller.pagedlist.pages" ng-class="page == controller.pagedlist.currentPage ? 'active' : ''"><a ng-click="controller.carregarLista(page)">{{page}}</a></li>
+            </ul>
+        </div>
+    </div>
+</section>

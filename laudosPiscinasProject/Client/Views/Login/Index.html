@@ -1,0 +1,56 @@
+﻿<div class="login">
+    <div ng-controller="LoginController as controller">
+        <img class="logo" src="Assets/images/logo.png" alt="">
+        <div class="col-xs-12">
+
+            <div class="input-group">
+
+                <div class="form-group is-empty">
+
+
+                    <input type="text" ng-model="controller.filter.cpf" ui-mask="999.999.999-99" maxlength="14" class="form-control" placeholder="000.000.000-00">
+                    <span class="material-input">
+
+                    </span>
+                </div>
+                <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+
+            <div class="input-group">
+
+                <div class="form-group is-empty txbSenhaLogin"><input type="password" ng-model="controller.filter.senha" class="form-control" placeholder="SENHA"><span class="material-input"></span></div>
+                <span class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+
+                </span>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <a class="pointer" ng-click="controller.esqueciSenha()">
+                Esqueci a senha
+            </a>
+
+        </div>
+        <div class="col-xs-12">
+            <button class="btn btn-block btn-blue btn-maior btnAcessar" ng-click="controller.login()">ACESSAR</button>
+            <!--<button class="btn btn-block btn-blue btn-maior btnAcessar" ng-click="controller.enviar()">TESTE</button>-->
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.txbSenhaLogin').keypress(function (e) {
+            if (e.keyCode == 13)
+                $('.btnAcessar').click();
+        });
+    });
+</script>
+

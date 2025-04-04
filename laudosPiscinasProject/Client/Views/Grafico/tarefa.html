@@ -1,0 +1,67 @@
+﻿<section ng-controller="GraficoController as controller" ng-init="controller.carregarTelaGraficoTarefa();">
+    <div class="container page-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title">
+                    <h1>TAREFAS<small></small></h1>
+                    <!--<ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i></a></li>
+                        <li class="active">Tarefas</li>
+                    </ol>-->
+                </div>
+            </div>
+        </div><!-- end .page title-->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default recent-activites">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">CATEGORIAS</h4>
+                        <!--<div class="panel-actions">
+                            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                        </div>-->
+                    </div>
+                    <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                    <div class="space-40"></div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="3%">#</th>
+                                <th width="23%">Obra</th>
+                                <th width="18%">Início em atraso</th>
+                                <th width="17%">Final em atraso</th>
+                                <th width="17%">Pausadas</th>
+                                <th width="16%">Canceladas</th>
+                                <th width="8%">Planejada</th>
+                                <th width="8%">Em Execução</th>
+                                <th width="8%">Finalizada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="t in trs">
+                                <td>{{(trs.indexOf(t)) + 1}}</td>
+                                <td>{{t.obr_ds_obra}}</td>
+                                <td>{{t.atraso_inicio}}</td>
+                                <td>{{t.atraso_fim}}</td>
+                                <td>{{t.pausada}}</td>
+                                <td>{{t.cancelada}}</td>
+                                <td>{{t.planejada}}</td>
+                                <td>{{t.em_execucao}}</td>
+                                <td>{{t.finalizada}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div><!-- End .panel -->
+            </div>
+            <div class="col-sm-6">
+                <!-- End .panel -->
+            </div>
+            <div class="col-sm-6">
+                <!-- End .panel -->
+            </div>
+        </div>
+    </div>
+</section>

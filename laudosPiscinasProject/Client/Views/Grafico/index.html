@@ -1,0 +1,318 @@
+﻿<section ng-controller="GraficoController as controller" ng-init="controller.carregarTelaIndex();">
+<div class="container page-wrapper">
+<div class="row">
+    <div class="col-sm-6 col-md-6 margin-b-30">
+        <div class="tile acqua">
+            <div class="tile-title clearfix">
+                <h3>
+                    RDO´s Atrasados -
+                    <div class="dropdown">
+                        <i class="fa fa-filter"></i>
+                        <div class="dropdown-content">
+                            <span>Data Início: </span><input type="text" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="filter.periodoIni">
+                            | <span> Data Fim: </span><input type="text" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="filter.periodoFim">
+                        </div>
+                    </div>
+                </h3>
+            </div>
+            <div class="tile-title-right">Qtde</div><!--.tile-title-->
+            <table width="95%" border="0" cellspacing="2" cellpadding="2">
+                <tbody>
+                <tr ng-repeat="atrasado in atrasados">
+                    <td>{{atrasado.obr_ds_obra}}</td>
+                    <td class="tdRight">{{atrasado.qtde}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--.tile-body-->
+            <div class="tile-footer">
+                <a class="cursor" ng-click="controller.rdo();">Ver mais...</a>
+            </div><!--.tile footer-->
+        </div><!-- .tile-->
+    </div>
+
+    <div class="col-sm-6 col-md-6 margin-b-30">
+        <div class="tile purple">
+            <div class="tile-title clearfix">
+                <h3>
+                    Dias Improdutivos -
+                    <div class="dropdown">
+                        <i class="fa fa-filter"></i>
+                        <div class="dropdown-content">
+                            <span>Data Início: </span><input ng-model="filter.periodoIni" type="text" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="filter.periodoIni"> | <span> Data Fim: </span><input ng-model="filter.periodoFim" type="text" ui-mask="99/99/9999" data-language='pt-BR' value="">
+                        </div>
+                    </div>
+                </h3>
+            </div>
+            <div class="tile-title-right">Qtde</div><!--.tile-title-->
+            <table width="95%" border="0" cellspacing="2" cellpadding="2">
+                <tbody>
+                <tr ng-repeat="day in diasImprodutivos">
+                    <td>{{day.obr_ds_obra}}</td>
+                    <td class="tdRight">{{day.total}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--.tile-body-->
+            <div class="tile-footer">
+                <a class="cursor" ng-click="controller.diaImprodutivo();">Ver mais...</a>
+            </div><!--.tile footer-->
+        </div><!-- .tile-->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6 margin-b-30">
+        <div class="tile darkred">
+            <div class="tile-title clearfix">
+                <h3>
+                    Comentários -
+                    <div class="dropdown">
+                        <i class="fa fa-filter"></i>
+                        <div class="dropdown-content">
+                            <span>Data Início: </span><input ng-model="filter.periodoIni" type="text" ui-mask="99/99/9999" data-language='pt-BR' value=""> | <span> Data Fim: </span><input ng-model="filter.periodoFim" type="text" ui-mask="99/99/9999" data-language='pt-BR' value="">
+                        </div>
+                    </div>
+                </h3>
+            </div>
+            <div class="tile-title-right2">
+                <i class="fa fa-thumbs-down" data-toggle="tooltip" title="Contratante"></i>
+            </div>
+            <div class="tile-title-right">
+                <i class="fa fa-thumbs-down" data-toggle="tooltip" title="Contratada"></i>
+            </div><!--.tile-title-->
+            <table width="95%" border="0" cellspacing="2" cellpadding="2">
+                <tbody>
+                <tr ng-repeat="comment in comments">
+                    <td width="85%">{{comment.obr_ds_obra}}</td>
+                    <td width="8%">{{comment.negativoContratante}}</td>
+                    <td width="7%" class="tdRight">{{comment.negativoContratada}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--.tile-body-->
+            <div class="tile-footer">
+                <a class="cursor" ng-click="controller.comentario();">Ver mais...</a>
+            </div><!--.tile footer-->
+        </div><!-- .tile-->
+    </div>
+
+    <div class="col-sm-6 col-md-6 margin-b-30">
+        <div class="tile darkolivegreen">
+            <div class="tile-title clearfix">
+                <h3>
+                    Tarefas com Início em Atraso -
+                    <div class="dropdown">
+                        <i class="fa fa-filter"></i>
+                        <div class="dropdown-content">
+                            <span>Data Início: </span><input ng-model="filter.periodoIni" type="text" ui-mask="99/99/9999" data-language='pt-BR' value=""> | <span> Data Fim: </span><input ng-model="filter.periodoFim" type="text" ui-mask="99/99/9999" data-language='pt-BR' value="">
+                        </div>
+                    </div>
+                </h3>
+                <!-- <span class="pull-right"><i class="fa fa-caret-up"></i> 33%</span>-->
+            </div>
+            <div class="tile-title-right">Qtde</div><!--.tile-title-->
+            <table width="95%" border="0" cellspacing="2" cellpadding="2">
+                <tbody>
+                <tr ng-repeat="task in tarefasInicioEmAtraso">
+                    <td>{{task.obr_ds_obra}}</td>
+                    <td class="tdRight">{{task.total}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--.tile-body-->
+            <div class="tile-footer">
+                <a class="cursor" ng-click="controller.tarefa();">Ver mais...</a>
+            </div><!--.tile footer-->
+        </div><!-- .tile-->
+    </div>
+</div>
+
+<div class="row">
+    <!--end .col-->
+    <div class="col-md-12">
+
+        <div class="panel panel-default recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title"> GESTÃO DE RDO´s</h4>
+                <!--<div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                </div>-->
+            </div>
+            <div class="panel-body pad-0">
+                <div class="table-responsive">
+                    <table width="101%" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="8%">#</th>
+                            <th width="31%">Obra</th>
+                            <th width="9%">Atrasados</th>
+                            <th width="15%">Assinatura Contratada</th>
+                            <!--<th width="16%">Sem Assinatura Contratante</th>-->
+                            <th width="16%">Assinatura Contratante</th>
+                            <th width="8%">Gerados</th>
+                            <th width="7%">A Gerar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="rdo in rdos">
+                            <td>{{(rdos.indexOf(rdo)) + 1}}</td>
+                            <td>{{rdo.obr_ds_obra}}</td>
+                            <td>{{rdo.atrasado}}</td>
+                            <td>{{rdo.assinado_contratada}}</td>
+                            <!--<td>{{rdo.sem_ass_contratante}}</td>-->
+                            <td>{{rdo.assinado_contratante}}</td>
+                            <td>{{rdo.gerado}}</td>
+                            <td>{{rdo.a_gerar}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">DIAS IMPRODUTIVOS</h4>
+                <!--<div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                </div>-->
+            </div>
+            <div class="panel-body pad-0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="4%">#</th>
+                            <th width="12%">Obra</th>
+                            <th width="5%">Clima</th>
+                            <th width="10%">Fornecedores</th>
+                            <th width="7%">Materiais</th>
+                            <th width="11%">Mão de Obra</th>
+                            <th width="9%">Paralizações</th>
+                            <th width="6%">Projeto</th>
+                            <th width="9%">Equipamento</th>
+                            <th width="10%">Planejamento</th>
+                            <th width="9%">Contratante</th>
+                            <th width="8%">Acidentes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="d in improdutivos">
+                            <td>{{(improdutivos.indexOf(d)) + 1}}</td>
+                            <td>{{d.obr_ds_obra}}</td>
+                            <td>{{d.imp_clima}}</td>
+                            <td>{{d.imp_fornecedores}}</td>
+                            <td>{{d.imp_falta_material}}</td>
+                            <td>{{d.imp_maodeobra}}</td>
+                            <td>{{d.imp_paralizacao}}</td>
+                            <td>{{d.imp_projeto}}</td>
+                            <td>{{d.imp_equipamento}}</td>
+                            <td>{{d.imp_planejamento}}</td>
+                            <td>{{d.imp_contratante}}</td>
+                            <td>{{d.imp_acidente}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">COMENTÁRIOS</h4>
+                <!--<div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                </div>-->
+            </div>
+            <div class="panel-body pad-0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="3%" height="71">#</th>
+                            <th width="23%">Obra</th>
+                            <th width="18%">Positivos Contratada</th>
+                            <th width="17%">Positivos Contratante</th>
+                            <th width="17%">Negativos Contratada</th>
+                            <th width="16%">Negativos Contratante.</th>
+                            <th width="3%">
+                                <i class="fa fa-thumbs-down"></i>
+                            </th>
+                            <th width="3%">
+                                <i class="fa fa-thumbs-up"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="c in comentarios">
+                            <td>{{(comentarios.indexOf(c)) + 1}}</td>
+                            <td>{{c.obr_ds_obra}}</td>
+                            <td>{{c.positivo_contratada}}</td>
+                            <td>{{c.positivo_contratante}}</td>
+                            <td>{{c.negativo_contratada}}</td>
+                            <td>{{c.negativo_contratante}}</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">TAREFAS</h4>
+                <!--<div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                </div>-->
+            </div>
+            <div class="panel-body pad-0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="3%">#</th>
+                            <th width="23%">Obra</th>
+                            <th width="18%">Início em atraso</th>
+                            <th width="17%">Final em atraso</th>
+                            <th width="17%">Pausadas</th>
+                            <th width="16%">Canceladas</th>
+                            <th width="8%">Planejada</th>
+                            <th width="8%">Em Execução</th>
+                            <th width="8%">Finalizada</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="t in trs">
+                        <td>{{(trs.indexOf(t)) + 1}}</td>
+                        <td>{{t.obr_ds_obra}}</td>
+                        <td>{{t.atraso_inicio}}</td>
+                        <td>{{t.atraso_fim}}</td>
+                        <td>{{t.pausada}}</td>
+                        <td>{{t.cancelada}}</td>
+                        <td>{{t.planejada}}</td>
+                        <td>{{t.em_execucao}}</td>
+                        <td>{{t.finalizada}}</td>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div><!--end .col-->
+</div>
+</div>
+</section>

@@ -1,0 +1,98 @@
+﻿body.dragging, body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+ol.example li.placeholder {
+    position: relative;
+    /** More li styles **/
+}
+
+    ol.example li.placeholder:before {
+        position: absolute;
+        /** Define arrowhead **/
+    }
+
+
+ol.vertical {
+    margin: 0 0 9px 0;
+    min-height: 10px;
+}
+
+ol {
+    list-style-type: none;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul, ol {
+    padding: 0;
+    margin: 0 0 9px 25px;
+}
+
+    ol.vertical li {
+        min-height: 30px;
+        display: block;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #cccccc;
+        color: #0088cc;
+        background: #eeeeee;
+    }
+
+li {
+    line-height: 18px;
+}
+
+ol.vertical button {
+    float: right;
+    background: transparent;
+    border: none;
+    margin-top: -1px;
+    font-size: 11px;
+}
+ol.vertical button i{
+   
+    color: #d90f3d !important;
+ 
+}
+ol.vertical li ol li ol li {
+    border: 1px solid red;
+}
+
+ol i.icon-move {
+    cursor: pointer;
+}
+
+/*[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url(/Assets/Images/glyphicons-halflings.png);
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+}*/
+.sortable i , .sortable i {
+    /*display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url(/Assets/Images/glyphicons-halflings.png);
+    background-position: 14px 14px;
+    background-repeat: no-repeat;*/
+        color: #396eb6;
+}
+.sortable
+.icon-move {
+    background-position: -168px -72px;
+}

@@ -1,0 +1,58 @@
+﻿<div class="panel-heading">
+    <h3>Página</h3>
+</div>
+
+<div class="panel" ng-controller="PaginaController as controller" ng-init="controller.carregarEdicao();controller.carregaListaAcao()">
+
+
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="form-group is-empty">
+            <label class="control-label">Título*</label>
+            <input type="text" class="form-control" ng-model="controller.cadastroParam.titulo" autofocus>
+            <span class="material-input"></span><span class="material-input"></span>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="form-group is-empty">
+            <label class="control-label">Alias*</label>
+            <input type="text" class="form-control" ng-model="controller.cadastroParam.alias">
+            <span class="material-input"></span><span class="material-input"></span>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="form-group is-empty">
+            <label class="control-label">URL*</label>
+            <input type="text" class="form-control" ng-model="controller.cadastroParam.caminho">
+            <span class="material-input"></span><span class="material-input"></span>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="form-group is-empty">
+            <label class="control-label">Status</label>
+            <select class="form-control" ng-model="controller.cadastroParam.status" ng-options="status.id as status.nome for status in controller.status"></select>
+            <span class="material-input"></span>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        <section ng-repeat="linha in controller.cadastroParam.listaAcao">
+            <input type="checkbox" ng-model="linha.marcado">{{linha.acao}}
+        </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-xs-12 no-padding header-table">
+        <div class="pull-right">
+            <button class="btn btn-blue" ng-click="controller.lista()">
+                <i class="fa fa-arrow-left"></i>
+                VOLTAR
+            </button>
+            <button class="btn btn-blue" ng-click="controller.salvar()">
+                <i class="fa fa-save"></i>
+                SALVAR
+            </button>
+        </div>
+    </div>
+</div>

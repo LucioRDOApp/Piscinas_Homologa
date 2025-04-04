@@ -1,0 +1,569 @@
+﻿
+<section ng-controller="TarefaController as controller" ng-init="controller.carregarStatusTarefa(); controller.carregaListaEtapa(); controller.carregaDropEtapa();">
+
+    <div class="panel-heading">
+        <h3>Etapas / Tarefas</h3>
+
+        <div class="action pull-right">
+            <button ng-click="controller.cadastroRdo();" ng-disabled="controller.desabilitarSalvar" permission="gerarRdo" title="Gerar RDO" class="btn btn-simple">
+                <i class="icon-rdo-gerar-novo"></i>
+
+            </button>
+            <a class="btn btn-simple" permission="editarObra" title="Editar Obra" ng-click="controller.editarObra()">
+                <i class="fa fa-edit"></i>
+
+            </a>
+            <button ng-click="controller.efetivoDiario();" ng-disabled="controller.desabilitarSalvar" title="Efetivo Diário" class="btn btn-simple">
+                <i class="fa fa-list-alt"></i>
+
+            </button>
+            <a ng-click="controller.lista()" class="fadein-xs fadeout btn btn-simple btn-view btn-card">
+                <i class="fa fa-columns"></i>
+
+            </a>
+            <a class="fadein-xs fadeout btn btn-simple" ng-click="controller.novaTarefa()" ng-disabled="controller.desabilitarSalvar" permission="criarNovo">
+                <i class="fa fa-clipboard"></i>
+            </a>
+            <a class="fadein-xs fadeout btn btn-simple" permission="criarNovo" permission-route="/etapa/index" ng-click="controller.novaEtapa()" ng-disabled="controller.desabilitarSalvar">
+                <i class="fa fa-file-o"></i>
+            </a>
+            <a class="fadein-xs fadeout btn btn-simple" data-toggle="collapse" data-target=".filtro" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa fa-filter"></i>
+
+            </a>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 no-padding hidden-xs">
+        <div class="col-sm-5 no-padding">
+
+            <button class="btn btn-simple  btn-view btn-card" ng-click="controller.lista()">
+                <i class="fa fa-columns"></i>
+                <span>LISTA</span>
+            </button>
+
+
+
+        </div>
+        <div class="col-sm-7 no-padding">
+            <div class="pull-right">
+
+                <button class="btn btn-dark-blue" type="button" data-toggle="collapse" data-target=".filtro" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa fa-filter"></i>
+                    FILTRO
+                </button>
+                <button class="btn btn-blue" permission="criarNovo" ng-disabled="controller.desabilitarSalvar" ng-click="controller.novaTarefa()">
+                    <i class="fa fa-clipboard"></i>
+                    <i class=""></i>
+                    ADICIONAR TAREFA
+                </button>
+                <button class="btn btn-blue" permission="criarNovo" permission-route="/etapa/index" ng-disabled="controller.desabilitarSalvar" ng-click="controller.novaEtapa()">
+                    <i class="fa fa-clipboard"></i>
+                    ADICIONAR ETAPA
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="collapse col-xs-12 filtro no-padding">
+
+        <div class="panel">
+
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                    <label class="control-label">Descrição</label>
+                    <input type="text" class="form-control" ng-model="controller.filtroParam.descricao">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                    <label class="control-label">Data Inicial Planejada</label>
+                    <input type="text" class="datepicker-here form-control txbDataInicialPlanejadaFiltro" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataInicial">
+                    <!--<md-datepicker class="form-control txbDataInicialPlanejadaFiltro" ng-model="controller.filtroParam.dataInicial" md-placeholder="__/__/____" md-hide-icons="calendar"></md-datepicker>-->
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                    <label class="control-label">Data Final Planejada</label>
+                    <!--<md-datepicker class="form-control txbDataFinalPlanejadaFiltro" ng-model="controller.filtroParam.dataFinalPlanejada" md-placeholder="__/__/____" md-hide-icons="calendar"></md-datepicker>-->
+                    <input type="text" class="datepicker-here form-control txbDataFinalPlanejadaFiltro" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataFinalPlanejada">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group is-empty">
+                    <label class="control-label">Status</label>
+                    <select class="form-control" ng-model="controller.filtroParam.statusTarefa" ng-options="st.id as st.nome for st in controller.statusTarefa"></select>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                    <label class="control-label">Data Inicial Executada</label>
+                    <input type="text" class="datepicker-here form-control txtDataInicialExecutadaFiltro" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataInicialExecutada">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                    <label class="control-label">Data Final Executada</label>
+                    <input type="text" class="datepicker-here form-control txtDataFinalExecutadaFiltro" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataFinalExecutada">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="form-group is-empty">
+                    <label class="control-label">Etapa</label>
+                    <select class="form-control" ng-model="controller.filtroParam.idEtapa" ng-options="st.id as st.titulo for st in controller.etapaList">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12">
+                <div class="pull-right">
+                    <!--<button class="btn btn-blue" ng-click="controller.carregarListaCards()">-->
+                    <button class="btn btn-blue" ng-click="controller.carregaListaEtapa()">
+                        <i class="fa fa-search"></i>
+                        PESQUISAR
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="lista-tarefas">
+
+        <div class="col-xs-12 no-padding" ng-hide="controller.etapas == null || controller.etapas == undefined || controller.etapas.length <= 0">
+            <div id="selecionar-tudo" class="checkbox">
+                <label>
+                    <input type="checkbox" name="optionsCheckboxes">
+                    SELECIONAR TUDO
+                </label>
+            </div>
+
+            <button permission="aterarStatusEmMassa" class="pull-left btn btn-blue btn-menor btn-block-xs" ng-hide="!(controller.listaTarefas.length > 0)" ng-click="controller.cleanCheckedElements()" data-toggle="modal" ng-disabled="controller.desabilitarSalvar" data-target="#alterar-status">
+                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                alterar status em massa
+            </button>
+        </div>
+
+
+        <label ng-hide="controller.etapas.length > 0" class="col-xs-12 no-padding" style="text-align:center">Nenhum registro encontrado.</label>
+        <!--===========================ACCORDION============================================-->
+        <div class="panel-group accordion" id="accordion" ng-repeat="etapa in controller.etapas">
+            <!--======ITEM ACCORDION=============-->
+            <div class="panel panel-default">
+                <div ng-click="controller.loadCards(etapa.titulo)" class="panel-heading">
+                    <h4 data-toggle="collapse" class="panel-title expand">
+
+                        <a href="#">{{ etapa.titulo }}</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+
+                        <!-- ====================ITEM CARD=========================== -->
+                        <div ng-if="!controller.verificarPermissaoCadastroTarefa() && (etapa.tarefas.length == 0 || etapa.tarefas == undefined)" style="text-align: center; width: 100%;">Nenhuma tarefa adicionada nesta etapa.</div>
+                        <div class="item col-lg-15 col-md-3" ng-repeat="tarefa in controller.cardsArray['\'' + etapa.titulo + '\'']">
+
+                            <div class="card">
+
+                                <div class="head {{tarefa.classeStatusCss}}">
+                                    <i class="icon-"></i>
+                                    <h5>{{tarefa.descricao}}</h5>
+                                    <a class="fa fa-ellipsis-v btn btn-simple bt-status" ng-hide="controller.desabilitarSalvar" permission="editar" title="Alterar Status"></a>
+
+                                    <div class="icones">
+                                        <div class="inf col-xs-5 col-sm-6  no-padding-right">
+
+                                            <i class="fa fa-male" aria-hidden="true" title="Colaboradores"></i>
+                                            <span title="Colaboradores">{{tarefa.quantidadeColaboradores}}</span>
+
+
+                                            <i class="icon-trator" aria-hidden="true" title="Equipamentos"></i>
+                                            <span title="Equipamentos">{{tarefa.quantidadeEquipamentos}}</span>
+
+
+                                        </div>
+                                        <div class="actions col-xs-7 col-sm-6 no-padding">
+                                            <div class="pull-right">
+                                                <button class="btn btn-simple" title="Visualizar Tarefa" permission="visualizarRegistro">
+                                                    <i class="fa fa-eye" aria-hidden="true" ng-click="controller.visualizar(tarefa)"></i>
+                                                </button>
+                                                <button class="btn btn-simple" data-toggle="modal" data-target="#historico-tarefa" ng-click="controller.preencherModalHistorico(tarefa)" title="Histórico de Medições">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                </button>
+                                                <button class="btn btn-simple" ng-disabled="controller.desabilitarSalvar" ng-click="controller.deletar(tarefa, 'cards')" permission="deletar" title="Excluir Tarefa">
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                </button>
+                                                <button class="btn btn-simple" ng-disabled="controller.desabilitarSalvar" ng-click="controller.editar(tarefa.id, tarefa.descricao)" permission="editar" title="Editar Tarefa">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </button>
+                                                <button class="btn btn-simple" ng-disabled="controller.desabilitarSalvar" ng-click="controller.editar(tarefa.id, tarefa.descricao, true)" permission="editar" title="Nova Medição">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="datas">
+                                    <div class="no-padding">
+
+                                        <label class="icon-planejada" for="">{{tarefa.dataInicio | date:'dd/MM/yyyy' }} À {{tarefa.dataPrevisaoFim | date:'dd/MM/yyyy'}}</label>
+
+                                    </div>
+                                    <div class="no-padding" ng-hide="{{tarefa.existeExecucao}}">
+
+                                        <label class="icon-executada" for="">{{tarefa.primeiraExecucao | date:'dd/MM/yyyy' }} À {{tarefa.ultimaExecucao | date:'dd/MM/yyyy'}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="ckbTarefa-{{tarefa.id}}">
+                                        </label>
+                                    </div>
+                                    <div class="progress progress-line-info">
+                                        <!--style="background:{{tarefa.atraso}}"-->
+                                        <i class="fa fa-exclamation-triangle" ng-hide="{{tarefa.percentualExtrapolado}}"></i>
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{100 - tarefa.percentualConcluido}}%;">
+
+                                            <span class="branco">{{tarefa.percentualConcluido}}%</span>
+
+                                        </div>
+                                        <span class="azul">{{tarefa.percentualConcluido}}%</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="status">
+
+                                    <a ng-repeat="statusTarefa in tarefa.listaStatusPermitidos" class="btn {{statusTarefa.cssClass}}" ng-click="controller.changeStatus(tarefa, statusTarefa.id)">
+                                        <i class="icon-" style="{{ statusTarefa.nome == 'Finalizada' && tarefa.listaStatusPermitidos.length == 1 ? 'top: 26%;' : ''}}"></i>
+                                        <span>{{statusTarefa.nome}}</span>
+                                        <i class="fa" style="{{ statusTarefa.nome == 'Finalizada' && tarefa.listaStatusPermitidos.length == 1 ? 'top: 33%;' : ''}}"></i>
+                                    </a>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- ====================FIM ITEM CARD=========================== -->
+                        <!-- ====================BOTAO ADD TAREFA=========================== -->
+                        <div class="item add-tarefa col-lg-15 col-md-3">
+                            <button id="btn-adicionar-nova-tarefa" class="btn" permission="criarNovo" ng-disabled="controller.desabilitarSalvar" ng-click="controller.novaTarefa(etapa.id)">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i>
+                                <span>Adicionar nova tarefa</span>
+                            </button>
+                        </div>
+                        <!-- ====================BOTAO ADD TAREFA=========================== -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==========================FIM =ACCORDION============================================-->
+    </div>
+
+
+
+    <div class="modal fade" id="historico-tarefa">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="icon-close"></i>
+                    </button>
+                    <div class="panel-heading">
+                        <h4>Medição</h4>
+                    </div>
+                </div>
+                <div class="modal-body" style="margin-top: -32px;">
+                    <h4>
+                        {{controller.objTarefaHistorico.descricao}}
+                    </h4>
+                    <div class="tabela table-responsive">
+                        <table class="table  table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Data
+                                    </th>
+                                    <th>
+                                        Hora Inicial
+                                    </th>
+                                    <th>
+                                        Hora Final
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Quantidade Construída
+                                    </th>
+                                    <th>
+                                        Unidade
+                                    </th>
+                                    <th class="fadeout-xs">
+                                        Usuário
+                                    </th>
+                                    <th colspan="2">
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="historico in controller.objTarefaHistorico.listaHistoricoTarefa">
+                                <tr>
+                                    <td>
+                                        {{historico.dataStatus | date:'dd/MM/yyyy'}}
+                                    </td>
+                                    <td class="fadeout-xs">
+                                        {{historico.horaInicial | limitTo: 5}} <p ng-if="historico.horaInicial == '' || historico.horaInicial == null">-</p>
+                                    </td>
+                                    <td class="fadeout-xs">
+                                        {{historico.horaFinal | limitTo: 5}} <p ng-if="historico.horaFinal == '' || historico.horaFinal == null">-</p>
+                                    </td>
+                                    <td class="fadeout-xs">
+                                        {{historico.descricaoStatusTarefa}} <p ng-if="historico.descricaoStatusTarefa == '' || historico.descricaoStatusTarefa == null">-</p>
+                                    </td>
+                                    <td class="fadeout-xs">
+                                        {{historico.qtdConstruida}}
+                                    </td>
+                                    <td class="fadeout-xs">
+                                        {{historico.unidadeMedida}} <p ng-if="historico.unidadeMedida == '' || historico.unidadeMedida == null">-</p>
+                                    </td>
+                                    <td class="fadeout-xs">
+                                        {{historico.nomeColaborador}} <p ng-if="historico.nomeColaborador == '' || historico.nomeColaborador == null">-</p>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-simple btn-just-icon" title="Visualizar Tarefa" ng-click="controller.visualizar(historico)">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-simple btn-just-icon" ng-if="!historico.rdoAssinado" ng-disabled="controller.desabilitarSalvar" ng-click="controller.editar(historico)" permission="editar" title="Editar Tarefa">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <label ng-hide="controller.objTarefaHistorico.listaHistoricoTarefa.length > 0" class="col-xs-12 no-padding" style="text-align:center;">Nenhum registro encontrado.</label>
+                <div class="modal-footer">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">
+                            <i class="icon-close" aria-hidden="true"></i>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="nova-medicao-botao-rapido">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="icon-close"></i>
+                    </button>
+                    <div class="panel-heading">
+                        <h4>Nova Medição - {{controller.descricaoTarefa}}</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div ng-show="controller.cadastroParam.id > 0 || (controller.cadastroParam.status != 1 && controller.cadastroParam.status != '')">
+                        <form id="form-cadastro-tarefa" class="">
+                            <div class="flex">
+
+                                <div class="col-md-12 col-sm-4" ng-if="!controller.mostraDropStatusNaTarefa">
+                                    <div class="form-group is-empty">
+                                        <label class="control-label">Status<span style="color:red">*</span></label>
+                                        <select class="form-control ddlStatus ng-pristine ng-untouched ng-valid" ng-change="controller.limparCamposMedicao();" ng-model="controller.cadastroParam.status" ng-disabled="controller.desabilitarCampos || controller.cadastroParam.rdoAssinado" ng-options="st.id as st.nome for st in controller.statusTarefa" aria-invalid="false"><option value="number:0" label="Selecione..." selected="selected">Selecione...</option><option value="number:1" label="Planejada">Planejada</option><option value="number:2" label="Em Execução">Em Execução</option></select>
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Data<span style="color:red">*</span></label>
+                                        <md-datepicker class="data-medicao" ng-model="controller.cadastroParam.dataMedicaoTela" md-placeholder="__/__/____" md-hide-icons="calendar"></md-datepicker>
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Hora Inicial</label>
+                                        <input type="text" class="form-control" ng-disabled="controller.cadastroParam.rdoAssinado || controller.desabilitarCampos" model-view-value="true" ui-mask="99:99" ng-model="controller.cadastroParam.horaInicial">
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Hora Final</label>
+                                        <input type="text" class="form-control" ng-disabled="controller.cadastroParam.rdoAssinado || controller.desabilitarCampos" model-view-value="true" ui-mask="99:99" ng-model="controller.cadastroParam.horaFinal">
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Quantidade de horas trabalhadas no dia</label>
+                                    <input type="text" class="form-control txbHorasTrabalhadas" ng-disabled="controller.desabilitarCampos" maxlength="11" ng-model="controller.cadastroParam.horasTrabalhadas" numeric-only>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>-->
+
+                            <div class="col-md-6 col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Quantidade Construída</label>
+                                    <input type="text" class="form-control txbQtdConstruida currency" ng-disabled="controller.cadastroParam.rdoAssinado || controller.desabilitarCampos || (controller.cadastroParam.status != 1 && controller.cadastroParam.status != 2 && controller.cadastroParam.status != 3)" ng-model="controller.cadastroParam.qtdConstruida" data-affixes-stay="true" data-prefix="" data-thousands="." data-decimal="," data-precision="2" maxlength="12">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Comentário</label>
+                                    <textarea name="" class="form-control txbComentario" ng-disabled="controller.cadastroParam.rdoAssinado || controller.desabilitarCampos" maxlength="1400" rows="3" ng-model="controller.cadastroParam.comentario" />
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div ng-hide="controller.cadastroParam.status == 1">
+                                <div class="no-padding col-xs-12">
+                                    <label class="col-xs-12 control-label">Foto</label>
+                                    <div class="col-md-9 col-sm-12 col-xs-12">
+
+                                        <div class="form-group">
+
+                                            <input type="file" ng-hide="controller.desabilitarCampos" accept=".png, .jpg, .jpeg, .bmp" ng-model="imageFile" base-sixty-four-input />
+
+                                            <label for="file" class="sr-only">{{imageFile.base64}}</label>
+
+                                            <div class="input-group col-xs-12" ng-hide="controller.desabilitarCampos">
+
+                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 no-padding-left" ng-disabled="controller.desabilitarCampos || controller.cadastroParam.status == 1">
+
+                                                    <input type="text" id="imgFileText" name="filename" class="form-control" placeholder="Nenhum arquivo selecionado (Tamanho Máx 2mb)" readonly>
+                                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                                </div>
+
+                                                <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12 no-padding">
+                                                    <div class="btn btn-blue">
+
+                                                        ESCOLHER ARQUIVO
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <button class="btn btn-blue btn-block-xs" ng-hide="controller.desabilitarCampos" ng-click="controller.adicionarImagem()">
+                                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                            ADICIONAR FOTO
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-12">
+                                    <section class="galeria delete slider" ng-hide="controller.desabilitarCampos">
+                                        <a ng-click="controller.removerImagem(imagem, $index)" ng-repeat="imagem in controller.listaImagens track by $index">
+                                            <img ng-src='{{controller.getImage(imagem)}}' />
+                                        </a>
+                                    </section>
+                                    <section class="galeria slider" ng-hide="!controller.desabilitarCampos">
+                                        <a ng-click="" ng-repeat="imagem in controller.listaImagens track by $index">
+                                            <img ng-src='{{controller.getImage(imagem)}}' />
+                                        </a>
+                                    </section>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-xs-12">
+                        <button class="btn btn-blue btn-block-xs" ng-hide="controller.desabilitarCampos" ng-disabled="controller.desabilitarSalvar" ng-click="controller.salvar()">
+                            <i class="fa fa-save"></i>
+                            SALVAR
+                        </button>
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">
+                            <i class="icon-close" aria-hidden="true"></i>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="alterar-status">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="icon-close"></i>
+                    </button>
+                    <div class="panel-heading">
+                        <h4>Alterar Status em Massa</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group is-empty">
+                            <label class="control-label">Status</label>
+                            <select class="form-control" ng-model="controller.statusTarefaEmMassa" ng-options="tp.id as tp.nome for tp in controller.statusTarefa"></select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">
+                            <i class="icon-close" aria-hidden="true"></i>
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal" ng-click="controller.alterarStatusEmMassa('cards')">
+                            <i class="icon-check" aria-hidden="true"></i>
+                            Salvar
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+

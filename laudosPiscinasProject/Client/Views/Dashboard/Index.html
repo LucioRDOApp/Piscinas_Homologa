@@ -1,0 +1,43 @@
+﻿<section ng-controller="DashboardController as controller" ng-init="controller.carregarDashboards()">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>DashBoards</h3>
+        </div>
+        <div class="clearfix"></div>
+        
+        <div class="guias">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="/dashboard/index#pie" ng-click="controller.cleanUrl()" aria-controls="pie" role="tab" data-toggle="tab">Gráfico de Colaboradores</a></li>
+                <li role="presentation"><a href="/dashboard/index#column" ng-click="controller.cleanUrl()" aria-controls="column" role="tab" data-toggle="tab">Gráfico de Tarefas</a></li>
+                <li role="presentation"><a href="/dashboard/index#efetivo" ng-click="controller.cleanUrl()" aria-controls="column" role="tab" data-toggle="tab">Gráfico de Efetivo</a></li>
+            </ul>
+            <div class="tab-content panel">
+                <div role="tabpanel" class="tab-pane active" id="pie">
+                    <div id="containerPizza" style="height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="column">
+                    <div id="containerBarr" style="max-width: 800px; height: 400px; margin: 0 auto; width: 100%; "></div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="efetivo">
+                    <div id="containerEfetivo" style="height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 no-padding-xs">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.relatorioMedicao()">
+                    <i class="fa fa-gratipay"></i>
+                    Relatório de medição
+                </button>
+                <button class="btn btn-blue" ng-click="controller.relatorioProdutividade()">
+                    <i class="fa fa-gratipay"></i>
+                    Relatório de produtividade
+                </button>
+                <button class="btn btn-blue" ng-click="controller.relatorioEfetivoDiario()">
+                    <i class="fa fa-gratipay"></i>
+                    Relatório de efetivo diário
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

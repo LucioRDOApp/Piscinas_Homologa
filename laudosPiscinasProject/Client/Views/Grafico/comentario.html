@@ -1,0 +1,67 @@
+﻿<section ng-controller="GraficoController as controller" ng-init="controller.carregarTelaGraficoComentario();">
+    <div class="container page-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title">
+                    <h1>COMENTÁRIOS<small></small></h1>
+                    <!--<ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i></a></li>
+                        <li class="active">Comentários</li>
+                    </ol>-->
+                </div>
+            </div>
+        </div><!-- end .page title-->
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default recent-activites">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">COMENTÁRIOS</h4>
+                        <div id="thumbsComentarios"><i class="fa fa-thumbs-down"></i><i class="fa fa-thumbs-up"></i></div>
+                        <!--<div class="panel-actions">
+                            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                        </div>-->
+                    </div>
+                    <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                    <div class="space-40"></div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="3%" height="71">#</th>
+                                <th width="23%">Obra</th>
+                                <th width="18%">Positivos Contratada</th>
+                                <th width="17%">Positivos Contratante</th>
+                                <th width="17%">Negativos Contratada</th>
+                                <th width="16%">Negativos Contratante.</th>
+                                <th width="3%"><i class="fa fa-thumbs-down"></i></th>
+                                <th width="3%"><i class="fa fa-thumbs-up"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="c in comentarios">
+                                <td>{{(comentarios.indexO(c)) + 1}}</td>
+                                <td>{{c.obr_ds_obra}}</td>
+                                <td>{{c.positivo_contratada}}</td>
+                                <td>{{c.positivo_contratante}}</td>
+                                <td>{{c.negativo_contratada}}</td>
+                                <td>{{c.negativo_contratante}}</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div><!-- End .panel -->
+            </div>
+            <div class="col-sm-6">
+                <!-- End .panel -->
+            </div>
+            <div class="col-sm-6">
+                <!-- End .panel -->
+            </div>
+        </div>
+    </div>
+</section>

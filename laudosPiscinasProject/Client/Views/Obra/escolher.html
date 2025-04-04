@@ -1,0 +1,55 @@
+﻿<section ng-controller="ObraController as controller" ng-init="controller.carregarLista();">
+    <h2>Selecione uma das unidades escolares abaixo:</h2>
+    <div class="lista-obras">
+        <label ng-hide="controller.obras.length > 0" class="col-xs-12 no-padding" style="text-align:center;">Você deve cadastrar uma obra para começar a usar o sistema.</label>
+        <div class="item" ng-repeat="obra in controller.obras">
+            <button class="btn change-background" ng-click="controller.escolherObra(obra)">
+                <i class="icon-{{obra.contratanteContratada}}"></i>
+                <H5>{{obra.descricao}}</H5>
+                <p>{{obra.cidadeEstado}}</p>
+                <p>({{obra.statusBasicaGratuita}})</p>
+
+                <small>STATUS</small>
+                <div class="progress progress-line-info {{ obra.classeStatusCss }}">
+
+                    <i class="fa fa-exclamation-triangle ng-hide" ng-hide="true" aria-hidden="true"></i>
+                    <div class="progress-bar progress-bar-info " role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ 100 - obra.progressoPorcentagem }}%;">
+
+                        <span class="branco ng-binding">{{ obra.progressoPorcentagem }}%</span>
+
+                    </div>
+                    <span class="azul ng-binding">{{ obra.progressoPorcentagem }}%</span>
+
+                </div>
+
+            </button>
+        </div>
+
+        <!--<button class="btn btn-block btn-blue btn-maior btnAcessar" ng-click="controller.enviar()">TESTE</button>-->
+    </div>
+
+
+    <div class="col-xs-12 no-padding area-legenda" ng-if="controller.obras.length > 0">
+        <div class="">
+            <label>BARRA DE PROGRESSO DA OBRA:</label>
+            <div class="legenda">
+                <i class="status bg-verde"></i>
+
+                <small>OBRA COM PRAZO ESTIMADO ATINGIDO</small>
+            </div>
+            <div class="legenda">
+                <i class="status bg-vermelho"></i>
+
+
+                <small>OBRA COM PRAZO ESTIMADO ULTRAPASSADO</small>
+            </div>
+            <div class="legenda">
+                <i class="status bg-cinza"></i>
+
+                <small>OBRA EM ANDAMENTO</small>
+            </div>
+
+
+        </div>
+    </div>
+</section>

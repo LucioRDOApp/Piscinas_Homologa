@@ -1,0 +1,154 @@
+﻿<section ng-controller="EmpresaController as controller" ng-init="controller.carregarEdicao(); controller.carregarRamos();  controller.carregarSetores(); controller.carregaListaUF();">
+
+    <div class="panel-heading">
+        <h3>Empresa</h3>
+    </div>
+
+    <form class="panel" id="form-cadastro-empresa">
+        
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+                <label class="control-label">Razão Social<span style="color:red">*</span></label>
+                <input type="text" class="form-control" maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.razaoSocial" autofocus>
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">CNPJ<span style="color:red">*</span></label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" validate="minlength[18],maxlength[18]" ui-mask="99.999.999/9999-99" maxlength="18" ng-model="controller.cadastroParam.cnpj">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Nome Fantasia<span style="color:red">*</span></label>
+                <input type="text" class="form-control" maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.nomeFantasia">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Ramo Atividade<span style="color:red">*</span></label>
+                <select class="form-control" ng-model="controller.cadastroParam.idRamo" ng-disabled="controller.desabilitarCampos" ng-options="opt.id as opt.nome for opt in controller.ramos"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Setor<span style="color:red">*</span></label>
+                <select class="form-control" ng-model="controller.cadastroParam.idSetor" ng-disabled="controller.desabilitarCampos" ng-options="opt.id as opt.nome for opt in controller.setores"></select>
+            </div>
+        </div>
+
+
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+                <label class="control-label">Logradouro<span style="color:red">*</span></label>
+                <input type="text" class="form-control" maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.logradouro">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Número</label>
+                <input type="text" class="form-control" maxlength="5" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.numeroEndereco">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Complemento</label>
+                <input type="text" class="form-control"  maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.complemento">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Bairro</label>
+                <input type="text" class="form-control"  maxlength="20" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.bairro">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">UF<span style="color:red">*</span></label>
+                <select class="form-control ddluf" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.idUf" ng-change="controller.carregaListaMunicipio('cadastro')" ng-options="opt.idUF as opt.uf for opt in controller.ufs"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Município<span style="color:red">*</span></label>
+                <select class="form-control ddlmunicipio" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.idMunicipio" ng-options="mun.idMunicipio as mun.municipio for mun in controller.municipios"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">CEP</label>
+                <input type="text" class="form-control" ui-mask="99999-999" ng-disabled="controller.desabilitarCampos" maxlength="9" placeholder="" ng-model="controller.cadastroParam.cep">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Telefone<span style="color:red">*</span></label>
+                <input type="text" class="form-control" ui-mask="(99)99999-9999" ng-disabled="controller.desabilitarCampos" validate="minlength[10], maxlength[14], phone-validator" maxlength="14" placeholder="" ng-model="controller.cadastroParam.telefone">
+                <span class="material-input"></span>
+            </div>
+        </div>
+        
+        <!--<div class="col-md-6 col-sm-12 col-xs-12">
+
+            <div class="form-group">
+
+                <input type="file" name="file" />
+
+                <label for="file" class="sr-only">Logo</label>
+
+                <div class="input-group col-xs-12">
+                    <label class="col-xs-12 control-label">Logo</label>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 no-padding-left">
+
+
+                        <input type="text" name="filename" class="form-control" placeholder="No file selected" readonly>
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12 no-padding">
+                        <div class="btn btn-blue">
+
+                            ESCOLHER ARQUIVO
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.voltar()">
+                    <i class="fa fa-arrow-left"></i>
+                    VOLTAR
+                </button>
+                <button class="btn btn-blue" ng-hide="controller.desabilitarCampos" ng-click="controller.salvar()">
+                    <i class="fa fa-save"></i>
+                    SALVAR
+                </button>
+            </div>
+        </div>
+    </form>
+
+</section>

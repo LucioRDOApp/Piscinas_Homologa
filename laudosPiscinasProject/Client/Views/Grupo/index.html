@@ -1,0 +1,90 @@
+﻿<!-- =========================CONTEUDO ================================= -->
+<section ng-controller="GrupoController as controller" ng-init="controller.carregarLista(1)">
+
+    <div class="panel-heading">
+        <h3>Grupo</h3>
+    </div>
+
+    <!-- ====================FILTRO=========================== -->
+        <div class="panel">
+
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Descrição</label>
+                    <input type="text" class="form-control" ng-model="controller.filtroParam.nome" autofocus>
+                    <span class="material-input"></span>
+                </div>
+            </div>
+            
+            <div class="col-md-12 col-xs-12">
+                <div class="pull-right">
+                    <button class="btn btn-blue" ng-click="controller.carregarLista(1)">
+                        <i class="fa fa-search"></i>
+                        PESQUISAR
+                    </button>
+                    <button class="btn btn-blue" permission="criarNovo" ng-click="controller.novo()">
+                        <i class="fa fa-plus"></i>
+                        NOVO
+                    </button>                                        
+                </div>
+            </div>
+
+        </div>
+    <!-- ====================FIM FILTRO========================== -->
+
+
+    <div class="lista-tarefas">
+
+        <div class="tabela table-responsive">
+
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th ng-click="controller.carregarLista(1, 'nome')">
+                            DESCRIÇÃO
+                        </th>
+                        <th>
+                            MENU
+                        </th>
+                        <th colspan="3" scope="col" width="15%">
+                            AÇÕES
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody ng-repeat="grupo in controller.pagedlist.list">
+                    <tr>
+                        <td>
+                            {{grupo.nome}}
+                        </td>
+                        <td>
+                            {{grupo.nomeMenu}}
+                        </td>
+                        <td>
+                            <button class="btn btn-simple btn-just-icon" permission="editar" title="Editar" ng-click="controller.editar(grupo)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+
+                            </button>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" permission="deletar" title="Excluir" ng-click="controller.deletar(grupo)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+
+                            </button>
+                        </td>
+                    </tr>              
+                    
+                </tbody>                
+            </table>
+            <ul class="pull-right pagination">
+                <li ng-repeat="page in controller.pagedlist.pages" ng-class="page == controller.pagedlist.currentPage ? 'active' : ''"><a ng-click="controller.carregarLista(page)">{{page}}</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</section>
+<!-- =========================FIM CONTEUDO ================================= -->

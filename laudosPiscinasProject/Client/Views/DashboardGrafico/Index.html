@@ -1,0 +1,164 @@
+﻿<section ng-controller="DashboardGraficoController as controller" ng-init="controller.carregarDashboards()">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>DASHBOARD DOS LAUDOS</h3>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Unidades escolares</label>
+                <select class="form-control" ng-model="controller.filtroParam.unidadeEscolar" ng-options="sts.idObra as sts.descricao for sts in controller.unidadesEscolares"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data Inicial</label>
+                <input type="text" class="datepicker-here form-control txbDataInicial" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataInicial">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data Final</label>
+                <input type="text" class="datepicker-here form-control txbDataFinal" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataFinal">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.carregarDashboard()">
+                    <i class="fa fa-search"></i>
+                    EXIBIR
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xs-12" ng-hide="controller.exibirResultado">
+            <div id="container"></div>
+        </div>
+
+        <div class="col-md-12 col-xs-12" ng-hide="controller.exibirResultado">
+            <div class="pull-left">
+                <label class="control-label">
+                    Quantidade de laudos: {{controller.totalLaudos}}
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12" ng-hide="controller.exibirResultado">
+            <div class="tabela table-responsive">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                Item
+                            </th>
+                            <th scope="col" width="15%">
+                                SIM
+                            </th>
+                            <th scope="col" width="15%">
+                                NÃO
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Os níveis de CLORO estão entre 1ppm e 3ppm?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.nivelCloroSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.nivelCloroNao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                O PH está entre 7,2 e 7,6?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.phSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.phNao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                A LIMPIDEZ DA ÁGUA permite perfeita visibilidade da parte mais profunda do tanque?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.limpidezSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.limpidezNao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                A superfície da água está livre de MATÉRIAS FLUTUANTES, estranhas à piscina?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.superficieSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.superficieNao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                O fundo do tanque está LIVRE DE DETRITOS?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.fundoSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.fundoNao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                O NÍVEL DE CLORO no tanque está mantido entre 0,8 a 3,0 mg/l?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.nivelCloro2Sim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.nivelCloro2Nao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                A piscina contém BACTÉRIAS DO GRUPO COLIFORME e/ou STAPHYLOCOCCUS AUREUS?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.bacteriasSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.bacteriasNao}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Há proliferação de ALGAS, LEVEDURAS E AMEBAS DE VIDA LIVRE na piscina?
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.proliferacaoSim}}</label>
+                            </td>
+                            <td class="text-center">
+                                <label>{{controller.proliferacaoNao}}</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>

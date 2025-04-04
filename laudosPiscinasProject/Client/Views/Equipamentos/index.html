@@ -1,0 +1,175 @@
+﻿
+<section ng-controller="EquipamentosController as controller" ng-init="controller.carregarLista(1)">
+
+    <div class="panel-heading">
+        <h3>Equipamentos</h3>
+    </div>
+
+    
+    <div class="panel">
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Tipo de Equipamento</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.tipoEquipamento">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+                <label class="control-label">Descrição</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.descricao" autofocus>
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Marca</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.marca">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Modelo</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.modelo">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Tipo de Aquisição</label>
+                <select class="form-control" ng-model="controller.filtroParam.tipoAquisicao" ng-options="tp.id as tp.nome for tp in controller.tipoAquisicao"></select>
+            </div>
+
+        </div>
+
+        <!--<div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data da Aquisição</label>
+                <input type="text" class="datepicker-here form-control" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataAquisicao">
+                <span class="material-input"></span>
+            </div>
+        </div>-->
+
+        <!--<div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Contato</label>
+                <input type="text" class="form-control" ng-model="controller.filtroParam.contato">
+                <span class="material-input"></span>
+            </div>
+        </div>-->
+
+        <!--<div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Telefone</label>
+                <input type="text" class="form-control" placeholder="(00) 00000-0000" ng-model="controller.filtroParam.telefone">
+                <span class="material-input"></span>
+            </div>
+        </div>-->
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Fornecedor/Fabricante</label>
+                <input type="text" class="form-control" maxlength="50" ng-model="controller.filtroParam.fabricanteFornecedor">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.carregarLista(1)">
+                    <i class="fa fa-search"></i>
+                    PESQUISAR
+                </button>
+                <button class="btn btn-blue" permission="criarNovo" ng-click="controller.novo()">
+                    <i class="fa fa-plus"></i>
+                    NOVO
+                </button>
+            </div>
+        </div>
+
+    </div>
+    
+
+
+    <div class="lista-tarefas">
+        <label ng-hide="controller.pagedlist.list.length > 0" class="col-xs-12 no-padding" style="text-align:center;top: 12px;">Nenhum registro encontrado.</label>
+        <div class="tabela table-responsive" ng-hide="controller.pagedlist.list.length == 0">
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            TIPO DE EQUIPAMENTO
+                        </th>
+                        <th ng-click="controller.carregarLista(1, 'descricao')">
+                            DESCRIÇÃO
+                        </th>
+                        <th>
+                            FABRICANTE / FORNECEDOR
+                        </th>
+                        <th>
+                            CONTATO
+                        </th>
+                        <th>
+                            TELEFONE
+                        </th>
+                        <th colspan="3" scope="col" width="15%">
+                            AÇÕES
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="equipamento in controller.pagedlist.list">
+                    <tr>
+                        <td>
+                            {{equipamento.tipoEquipamento}}
+                        </td>
+                        <td>
+                            {{equipamento.descricao}}
+                        </td>
+                        <td>
+                            {{equipamento.fabricanteFornecedor == '' || equipamento.fabricanteFornecedor == undefined ? '-' : equipamento.fabricanteFornecedor}}
+                        </td>
+                        <td>
+                            {{equipamento.contato == '' || equipamento.contato == undefined ? '-' : equipamento.contato}}
+                        </td>
+                        <td>
+                            {{equipamento.telefone == '' || equipamento.telefone == undefined ? '-' : equipamento.telefone}}
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" title="Visualizar" permission="visualizarRegistro" ng-click="controller.visualizar(equipamento)">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </td>                        
+                        <td>
+                            <button class="btn btn-simple btn-just-icon" title="Editar" permission="editar" ng-click="controller.editar(equipamento)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" permission="deletar" title="Excluir" ng-click="controller.deletar(equipamento)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <ul class="pull-right pagination">
+                <li ng-repeat="page in controller.pagedlist.pages" ng-class="page == controller.pagedlist.currentPage ? 'active' : ''"><a ng-click="controller.carregarLista(page)">{{page}}</a></li>
+            </ul>
+        </div>
+
+    </div>
+   
+</section>
+
+
+

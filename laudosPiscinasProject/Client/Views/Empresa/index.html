@@ -1,0 +1,137 @@
+﻿<section ng-controller="EmpresaController as controller" ng-init="controller.carregarLista(1); controller.carregarRamos();  controller.carregarSetores(); controller.carregaListaUF();">
+
+    <div class="panel-heading">
+        <h3>Empresa</h3>
+    </div>
+
+
+    <div class="panel">
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Razão Social</label>
+                <input type="text" class="form-control" ng-model="controller.filtroParam.razaoSocial" autofocus />
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">CNPJ</label>
+                <input type="text" class="form-control" ui-mask="99.999.999/9999-99" maxlength="18" ng-model="controller.filtroParam.cnpj">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">UF</label>
+                <select class="form-control ddluf" ng-model="controller.filtroParam.idUf" ng-change="controller.carregaListaMunicipio('listagem')" ng-options="opt.idUF as opt.uf for opt in controller.ufs"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Município</label>
+                <select class="form-control ddlmunicipio" ng-model="controller.filtroParam.idMunicipio" ng-options="mun.idMunicipio as mun.municipio for mun in controller.municipios"></select>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Ramo Atividade</label>
+                <select class="form-control" ng-model="controller.filtroParam.idRamo" ng-options="opt.id as opt.nome for opt in controller.ramos"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Setor</label>
+                <select class="form-control" ng-model="controller.filtroParam.idSetor" ng-options="opt.id as opt.nome for opt in controller.setores"></select>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.carregarLista(1)">
+                    <i class="fa fa-search"></i>
+                    PESQUISAR
+                </button>
+                <!--<button class="btn btn-blue" ng-click="controller.novo()">
+                    <i class="fa fa-plus"></i>
+                    NOVA EMPRESA
+                </button>-->
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="lista-tarefas">
+
+        <label ng-hide="controller.pagedlist.list.length > 0" class="col-xs-12 no-padding" style="text-align:center;top: 35px;">Nenhum registro encontrado.</label>
+        <div class="tabela table-responsive" ng-hide="controller.pagedlist.list.length == 0">            
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th ng-click="controller.carregarLista(1, 'razaoSocial')">
+                            Razão Social
+                        </th>
+                        <th>
+                            Nome Fantasia
+                        </th>
+                        <th>
+                            Local
+                        </th>
+                        <th>
+                            Telefone
+                        </th>
+                        <th colspan="3" scope="col" width="15%">
+                            AÇÕES
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="empresa in controller.pagedlist.list">
+                    <tr>
+                        <td>
+                            {{empresa.razaoSocial}} <p ng-if="empresa.razaoSocial == '' || empresa.razaoSocial == null">-</p>
+                        </td>
+                        <td>
+                            {{empresa.nomeFantasia}} <p ng-if="empresa.nomeFantasia == '' || empresa.nomeFantasia == null">-</p>
+                        </td>
+                        <td>
+                            {{empresa.local}} <p ng-if="empresa.local == '' || empresa.local == null">-</p>
+                        </td>
+                        <td>
+                            {{controller.maskPhone(empresa.telefone)}} <p ng-if="empresa.telefone == '' || empresa.telefone == null">-</p>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" title="Visualizar" permission="visualizarRegistro" ng-click="controller.visualizar(empresa)">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-simple btn-just-icon" title="Editar" ng-hide="!empresa.editavel" ng-click="controller.editar(empresa)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <ul class="pull-right pagination">
+                <li ng-repeat="page in controller.pagedlist.pages" ng-class="page == controller.pagedlist.currentPage ? 'active' : ''"><a ng-click="controller.carregarLista(page)">{{page}}</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</section>
+
+
+

@@ -1,0 +1,61 @@
+﻿<section ng-controller="RelatorioMedicaoController as controller" ng-init="controller.carregaTela()">
+
+    <div class="panel-heading">
+        <h3>Relatório de Medição</h3>
+    </div>
+
+    <div class="panel">
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Data Inicial<span style="color:red">*</span></label>
+                <input type="text" class="datepicker-here form-control txbDataInicial" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="filtroParam.dataInicialTela">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Data Final<span style="color:red">*</span></label>
+                <input type="text" class="datepicker-here form-control txbDataFinal" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="filtroParam.dataPrevisaoFinalObraTela">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <!--<div class="col-md-3 col-sm-3">
+            <div class="form-group is-empty">
+                <label class="control-label">Obra<span style="color:red">*</span></label>
+                <select class="form-control" ng-model="filtroParam.idObra" ng-options="o.idObra as o.descricao for o in obraList">
+                    <option value="">Selecione...</option>
+                </select>
+            </div>
+        </div>-->
+
+        <!--<div class="col-md-3 col-sm-3">
+            <div class="form-group is-empty">
+                <label class="control-label">Status da TAREFA</label>
+                <select class="form-control" ng-model="filtroParam.idStatusTarefa" ng-options="s.id as s.nome for s in statusTarefaList">
+                    <option value="">Selecione...</option>
+                </select>
+            </div>
+        </div>-->
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.gerarPDF()">
+                    <i class="fa fa-plus"></i>
+                    Gerar PDF
+                </button>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.gerarExcel()">
+                    <i class="fa fa-plus"></i>
+                    Gerar Excel
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</section>

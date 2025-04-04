@@ -1,0 +1,202 @@
+﻿<section ng-controller="EquipamentosController as controller" ng-init="controller.carregarEdicao()">
+
+    <div class="panel-heading">
+        <h3>Equipamentos</h3>
+    </div>
+
+    <form id="form-cadastro-equipamento" class="panel">
+
+        <div class="col-md-3 col-sm-3" ng-if="!controller.desabilitarCampos">
+            <div class="form-group">
+
+                <label class="control-label">Tipo de Equipamento<span style="color:red">*</span></label>
+                <md-autocomplete class="form-control"
+                                 md-no-cache="controller.noCache"
+                                 md-selected-item="controller.selectedItemTipoEquipamento"
+                                 md-search-text-change="controller.searchTextChange(controller.buscaTextoTipoEquipamento)"
+                                 md-search-text="controller.buscaTextoTipoEquipamento"
+                                 md-selected-item-change="controller.selectedItemChange(item)"
+                                 md-items="item in controller.buscaTipoEquipamento(controller.buscaTextoTipoEquipamento)"
+                                 md-item-text="item.display"
+                                 md-min-length="0"
+                                 ng-model="controller.cadastroParam.tipoEquipamento"
+                                 placeholder="Digite ou selecione o tipo">
+                    <md-item-template>
+                        <span md-highlight-text="controller.buscaTextoTipoEquipamento" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                </md-autocomplete>
+
+            </div>
+        </div>
+
+        <div class="col-md-9 col-sm-9">
+            <div class="form-group">
+                <label class="control-label">Descrição<span style="color:red">*</span></label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="50" ng-model="controller.cadastroParam.descricao">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3" ng-if="controller.desabilitarCampos">
+            <div class="form-group">
+                <label class="control-label">Tipo de Equipamento<span style="color:red">*</span></label>
+                <input ng-disabled="controller.desabilitarCampos" type="text" class="form-control" maxlength="50" ng-model="controller.cadastroParam.tipoEquipamento">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4" ng-if="!controller.desabilitarCampos">
+            <div class="form-group">
+
+                <label class="control-label">Marca</label>
+                <md-autocomplete style="cursor: no-drop"
+                                 class="form-control"
+                                 md-no-cache="controller.noCache"
+                                 md-selected-item="controller.selectedItemMarca"
+                                 md-search-text-change="controller.searchTextChange(controller.buscaTextoMarca)"
+                                 md-search-text="controller.buscaTextoMarca"
+                                 md-selected-item-change="controller.selectedItemChange(item)"
+                                 md-items="item in controller.buscaMarca(controller.buscaTextoMarca)"
+                                 md-item-text="item.display"
+                                 md-min-length="0"
+                                 ng-model="controller.cadastroParam.marca"
+                                 placeholder="Digite ou selecione a marca">
+                    <md-item-template>
+                        <span md-highlight-text="controller.buscaTextoMarca" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                </md-autocomplete>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4" ng-if="controller.desabilitarCampos">
+            <div class="form-group">
+                <label class="control-label">Marca</label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="50" ng-model="controller.cadastroParam.marca">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4" ng-if="!controller.desabilitarCampos">
+            <div class="form-group">
+                <label class="control-label">Modelo</label>
+                <md-autocomplete class="form-control"
+                                 md-no-cache="controller.noCache"
+                                 md-selected-item="controller.selectedItemModelo"
+                                 md-search-text-change="controller.searchTextChange(controller.buscaTextoModelo)"
+                                 md-search-text="controller.buscaTextoModelo"
+                                 md-selected-item-change="controller.selectedItemChange(item)"
+                                 md-items="item in controller.buscaModelo(controller.buscaTextoModelo)"
+                                 md-item-text="item.display"
+                                 md-min-length="0"
+                                 ng-model="controller.cadastroParam.modelo"
+                                 placeholder="Digite ou selecione o modelo">
+                    <md-item-template>
+                        <span md-highlight-text="controller.buscaTextoModelo" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                </md-autocomplete>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4" ng-if="controller.desabilitarCampos">
+            <div class="form-group">
+                <label class="control-label">Modelo</label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="50" ng-model="controller.cadastroParam.modelo">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Tipo de Aquisição</label>
+                <select class="form-control" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.tipoAquisicao" ng-options="tp.id as tp.nome for tp in controller.tipoAquisicao"></select>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Data da Aquisição</label>
+                <input type="text" class="datepicker-here form-control dataAquisicao" ng-disabled="controller.desabilitarCampos" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="controller.cadastroParam.dataAquisicao">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Fornecedor/Fabricante</label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="50" ng-model="controller.cadastroParam.fabricanteFornecedor">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Contato</label>
+                <input id="contato" data-inputmask-clearmaskonlostfocus="false" type="text" class="form-control" maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.contato">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Telefone</label>
+                <input id="telefone" data-inputmask-clearmaskonlostfocus="false" type="text" class="form-control" maxlength="15" placeholder="" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.telefone">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <!--<div class="col-md-6 col-sm-12 col-xs-12" permission="adicionarFoto">
+
+            <div class="form-group">
+
+                <input type="file" maxlength="2097152" name="file" ng-model="imageFileEquipamento" base-sixty-four-input />
+
+                <label for="file" ng-disabled="controller.desabilitarCampos" class="sr-only">Imagem:</label>
+
+                <div class="input-group col-xs-12">
+                    <label class="col-xs-12 control-label">Imagem:</label>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 no-padding-left">
+
+
+                        <input type="text" ng-model="controller.cadastroParam.descricaoFoto" ng-disabled="controller.desabilitarCampos" name="filename" class="form-control" placeholder="No file selected" readonly>
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12 no-padding">
+                        <div class="btn btn-blue">
+
+                            ESCOLHER ARQUIVO
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.voltar()">
+                    <i class="fa fa-arrow-left"></i>
+                    VOLTAR
+                </button>
+                <button ng-hide="controller.desabilitarCampos" class="btn btn-blue" ng-click="controller.salvar()">
+                    <i class="fa fa-save"></i>
+                    SALVAR
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</section>
+<script>
+    $(document).ready(function () {
+        $("input#telefone").inputmask({
+            mask: ["(99) 9999-9999", "(99) 99999-9999",],
+            keepStatic: true
+        });
+    });
+</script>

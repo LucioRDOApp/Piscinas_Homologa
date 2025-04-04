@@ -1,0 +1,65 @@
+﻿@using System.Configuration
+
+@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide {
+            display: none !important;
+        }
+    </style>
+    <title data-ng-bind="title">RDO App</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta content="~/assets/images/logo.png" itemprop="image">
+    <link href="~/assets/images/logo.png" rel="shortcut icon">
+    <base href="@ConfigurationManager.AppSettings["basePath"]" />
+    <script>
+        // Must be first. IE10 mobile viewport fix
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            var mq = "@@-ms-viewport{width:auto!important}";
+            msViewportStyle.appendChild(document.createTextNode(mq));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155176611-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-155176611-1');
+    </script>
+
+    @Styles.Render("~/Styles")
+</head>
+<body>
+    <div class="modal fade load styleLoading" data-keyboard="false" data-backdrop="static" loading>
+        <div class="modal-dialog" role="document">
+            <div class="sk-three-bounce">
+                <div class="sk-child sk-bounce1"></div>
+                <div class="sk-child sk-bounce2"></div>
+                <div class="sk-child sk-bounce3"></div>
+            </div>
+            <span class="texto">AGUARDE</span>
+        </div>
+    </div>
+
+    <div ui-view></div>
+
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/controllers")
+    @Scripts.Render("~/Scripts")
+
+</body>
+</html>

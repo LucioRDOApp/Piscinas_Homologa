@@ -1,0 +1,55 @@
+﻿<section ng-controller="ColaboradorController as controller">
+
+    <div class="panel-heading">
+        <h3>Alterar Senha</h3>
+    </div>
+
+
+    <form id="form-senha-colaborador" class="panel">
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Senha Atual</label>
+                <input type="password" class="form-control"  maxlength="20" ng-model="controller.cadastroParam.senhaAtual">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Nova Senha</label>
+                <input type="password" class="form-control"  maxlength="20" ng-model="controller.cadastroParam.senha">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Confirmação Nova Senha</label>
+                <input type="password" class="form-control" ng-model="controller.cadastroParam.confirmacaoSenha">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.cards()">
+                    <i class="fa fa-arrow-left"></i>
+                    VOLTAR
+                </button>
+                <button class="btn btn-blue" ng-click="controller.alterarSenha()">
+                    <i class="fa fa-save"></i>
+                    SALVAR
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</section>
+
+
+

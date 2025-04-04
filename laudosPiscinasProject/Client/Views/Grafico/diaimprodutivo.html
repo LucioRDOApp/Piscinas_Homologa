@@ -1,0 +1,74 @@
+﻿<section ng-controller="GraficoController as controller" ng-init="controller.carregarTelaGraficoDiaImprodutivo();">
+    <div class="container page-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title">
+                    <h1>DIAS IMPRODUTIVOS<small></small></h1>
+                    <!--<ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i></a></li>
+                        <li class="active">Dias Improdutivos</li>
+                    </ol>-->
+                </div>
+            </div>
+        </div><!-- end .page title-->
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default recent-activites">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">CATEGORIAS</h4>
+                        <!--<div class="panel-actions">
+                            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle=""></a>
+                            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss=""></a>
+                        </div>-->
+                    </div>
+                    <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                    <div class="space-40"></div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="4%">#</th>
+                                <th width="12%">Obra</th>
+                                <th width="5%">Clima</th>
+                                <th width="10%">Fornecedores</th>
+                                <th width="7%">Materiais</th>
+                                <th width="11%">Mão de Obra</th>
+                                <th width="9%">Paralizações</th>
+                                <th width="6%">Projeto</th>
+                                <th width="9%">Equipamento</th>
+                                <th width="10%">Planejamento</th>
+                                <th width="9%">Contratante</th>
+                                <th width="8%">Acidentes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="d in diasImprodutivos">
+                                <td>{{(diasImprodutivos.indexOf(d)) + 1}}</td>
+                                <td>{{d.obr_ds_obra}}</td>
+                                <td>{{d.imp_clima}}</td>
+                                <td>{{d.imp_fornecedores}}</td>
+                                <td>{{d.imp_falta_material}}</td>
+                                <td>{{d.imp_maodeobra}}</td>
+                                <td>{{d.imp_paralizacao}}</td>
+                                <td>{{d.imp_projeto}}</td>
+                                <td>{{d.imp_equipamento}}</td>
+                                <td>{{d.imp_planejamento}}</td>
+                                <td>{{d.imp_contratante}}</td>
+                                <td>{{d.imp_acidente}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div><!-- End .panel -->
+            </div>
+            <div class="col-sm-6">
+                <!-- End .panel -->
+            </div>
+            <div class="col-sm-6">
+                <!-- End .panel -->
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,79 @@
+﻿<section ng-controller="GrupoController as controller" ng-init="controller.init();">
+
+    <div class="panel-heading">
+        <h3>Grupo</h3>
+    </div>
+
+    <!-- ====================FILTRO=========================== -->
+    <div class="panel">
+
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Descrição<red>*</red></label>
+                <input type="text" class="form-control" ng-model="controller.cadastroParam.nome" autofocus>
+                <span class="material-input"></span>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label class="control-label">Menu<red>*</red></label>
+                <select class="form-control" ng-model="controller.cadastroParam.idMenu" ng-options="opt.men_id_menu as opt.men_nm_titulo for opt in controller.menus"></select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <label class="control-label">Licenca<red>*</red></label>
+                <select class="form-control" ng-model="controller.cadastroParam.idLicenca" ng-options="opt.id as opt.nome for opt in controller.licencas"></select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <label class="control-label">Status Diretor<red>*</red></label>
+                <select class="form-control" ng-model="controller.cadastroParam.statusDiretor" ng-options="opt.id as opt.titulo for opt in controller.diretores"></select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <label class="control-label">Contratante/Contratada<red>*</red></label>
+                <select class="form-control" ng-model="controller.cadastroParam.statusContratante" ng-options="opt.id as opt.titulo for opt in controller.contratante"></select>
+            </div>
+        </div>
+        <div class="lista-grupo"> 
+            <div class="pagina checks col-lg-2 col-sm-4 col-xs-12 no-padding" ng-repeat="gpa in controller.cadastroParam.listaGrupoPaginaAcao" ng-hide="gpa.objPagina.listaAcao.length == 0">
+                <fieldset>
+                    <label>{{gpa.objPagina.titulo}}</label>
+                    <label class="text-muted small">{{gpa.objPagina.caminho}}</label>
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                        <section ng-repeat="linha in gpa.objPagina.listaAcao">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="linha.marcado">
+                                    <p>{{linha.acao}}</p>
+                                </label>
+                            </div>
+
+                        </section>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.voltar()">
+                    <i class="fa fa-arrow-left"></i>
+                    VOLTAR
+                </button>
+                <button class="btn btn-blue" ng-click="controller.salvar()">
+                    <i class="fa fa-save"></i>
+                    SALVAR
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <!-- ====================FIM FILTRO========================== -->
+
+
+
+</section>

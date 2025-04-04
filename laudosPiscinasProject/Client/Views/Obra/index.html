@@ -1,0 +1,255 @@
+﻿<section ng-controller="ObraController as controller" ng-init="controller.carregarTelaIndex();">
+
+    <div class="panel-heading">
+        <h3>Obras</h3>
+    </div>
+
+
+    <div class="panel">
+
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Nome</label>
+                <input type="text" class="form-control" ng-model="controller.filtroParam.descricao">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group is-empty">
+                <label class="control-label">Contratante</label>
+                <select class="form-control" ng-model="controller.filtroParam.idContratante" ng-options="emp.idEmpresa as emp.nomeFantasia for emp in controller.empresas"></select>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Data Inicial</label>
+                <input type="text" class="datepicker-here form-control dataInicioBuscaDe" placeholder="dd/mm/aaaa" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataInicioDe">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Data Final</label>
+                <input type="text" class="datepicker-here form-control dataInicioBuscaAte" placeholder="dd/mm/aaaa" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataInicioAte">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <!--<div class="col-md-6 col-sm-6">
+            <div class="form-group is-empty">
+                <label class="control-label">Contratada</label>
+                <select class="form-control" ng-model="controller.filtroParam.idContratada" ng-options="emp.idEmpresa as emp.nomeFantasia for emp in controller.empresas"></select>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Previsão Fim (início)</label>
+                <input type="text" class="datepicker-here form-control dataPrevisaoFimDe" placeholder="dd/mm/aaaa" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataPrevisaoFimDe">
+                <span class="material-input"></span>
+            </div>
+        </div>-->
+        <!--<div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Previsão Fim (fim)</label>
+                <input type="text" class="datepicker-here form-control dataPrevisaoFimAte" placeholder="dd/mm/aaaa" ui-mask="99/99/9999" data-language='pt-BR' value="" ng-model="controller.filtroParam.dataPrevisaoFimAte">
+                <span class="material-input"></span>
+            </div>
+        </div>-->
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group is-empty">
+                <label class="control-label">UF</label>
+                <select class="form-control ddluf" ng-model="controller.filtroParam.idUf" ng-change="controller.carregaListaMunicipio('listagem')" ng-options="opt.idUF as opt.uf for opt in controller.ufs">
+                    <option value="">Selecione...</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group is-empty">
+                <label class="control-label">Município</label>
+                <select class="form-control ddlmunicipio" ng-model="controller.filtroParam.idMunicipio" ng-options="mun.idMunicipio as mun.municipio for mun in controller.municipios">
+                    <option value="">Selecione...</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group is-empty">
+                <label class="control-label">Status</label>
+                <select class="form-control" ng-model="controller.filtroParam.statusObra" ng-options="st.id as st.nome for st in controller.statusObra"></select>
+            </div>
+        </div>
+
+        <!--<div class="col-md-6 col-sm-6">
+            <div class="form-group is-empty">
+                <label class="control-label">Setor</label>
+                <select class="form-control" ng-model="controller.filtroParam.setor" ng-options="set.id as set.nome for set in controller.setores"></select>
+            </div>
+        </div>-->
+
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.carregarListaIndex(1)">
+                    <i class="fa fa-search"></i>
+                    PESQUISAR
+                </button>
+                <button class="btn btn-blue" permission="criarNovo" ng-click="controller.novo()">
+                    <i class="fa fa-plus"></i>
+                    NOVO
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="lista-tarefas">
+
+        <label ng-hide="controller.pagedlist.list.length > 0" class="col-xs-12 no-padding" style="text-align:center;">Nenhum registro encontrado.</label>
+        <div class="tabela table-responsive" ng-hide="controller.pagedlist.list.length == 0">
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th ng-click="controller.carregarListaIndex(1)">
+                            Nome
+                        </th>
+                        <th>
+                            Contratante
+                        </th>
+                        <th>
+                            Contratada
+                        </th>
+                        <th>
+                            Data Início
+                        </th>
+                        <th>
+                            Data Conclusão
+                        </th>
+                        <th>
+                            Local
+                        </th>
+                        <th>
+                            Dias Decorridos
+                        </th>
+                        <th colspan="5" scope="col" width="25%">
+                            AÇÕES
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="obra in controller.pagedlist.list">
+                    <tr>
+                        <td>
+                            {{obra.descricao}} <p ng-if="obra.descricao == '' || obra.descricao == null">-</p>
+                        </td>
+                        <td>
+                            {{obra.descricaoContratante}} <p ng-if="obra.descricaoContratante == '' || obra.descricaoContratante == null">-</p>
+                        </td>
+                        <td>
+                            {{obra.descricaoContratada}} <p ng-if="obra.descricaoContratada == '' || obra.descricaoContratada == null">-</p>
+                        </td>
+                        <td>
+                            {{obra.dataInicio.substring(0, 10)}} <p ng-if="obra.dataInicio == '' || obra.dataInicio == null">-</p>
+                        </td>
+                        <td>
+                            {{obra.dataConclusao.substring(0,10)}} <p ng-if="obra.dataConclusao == '' || obra.dataConclusao == null">-</p>
+                        </td>
+                        <td>
+                            {{obra.cidadeEstado}} <p ng-if="obra.cidadeEstado == '' || obra.cidadeEstado == null">-</p>
+                        </td>
+                        <td>
+                            {{obra.diasDecorridos}}
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" permission="visualizarRegistro" title="Visualizar" ng-click="controller.visualizar(obra)">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" data-toggle="modal" title="Enviar Convite" permission="enviarConvite" data-target="#convidar-empresa" ng-click="controller.convidar(obra)">
+                                <i class="fa fa-send" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" permission="copiarObra" title="Copiar Obra" ng-click="controller.copiar(obra)">
+                                <i class="fa fa-copy" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-simple btn-just-icon" permission="editar" title="Editar" ng-click="controller.editar(obra)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" permission="deletar" title="Excluir" ng-click="controller.deletar(obra)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <ul class="pull-right pagination">
+                <li ng-repeat="page in controller.pagedlist.pages" ng-class="page == controller.pagedlist.currentPage ? 'active' : ''"><a ng-click="controller.carregarListaIndex(page)">{{page}}</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="convidar-empresa">
+        <form id="form-convite-empresa">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="icon-close"></i>
+                        </button>
+                        <div class="panel-heading">
+                            <h4>CONVIDAR EMPRESA</h4>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="col-md-8 col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label">E-mail</label>
+                                <input type="text" class="form-control txbEmailConvidada" maxlength="50" ng-model="controller.cadastroParam.emailConvidada">
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-simple" data-dismiss="modal">
+                                <i class="icon-close" aria-hidden="true"></i>
+                                Cancelar
+                            </button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default btn-simple" ng-click="controller.enviarConvite()">
+                                <i class="icon-check" aria-hidden="true"></i>
+                                Enviar Convite
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</section>
+
+
+

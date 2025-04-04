@@ -1,0 +1,115 @@
+﻿<form id="form-convidada" class="login cadastro">
+    <div ng-controller="ConvidadaController as controller" ng-init="controller.init()">
+        <!--ng-init="controller.carregarObraConvidada()"-->
+        <img class="logo" src="Assets/images/logo.png" alt="">
+
+
+        <h2>Dados da Empresa</h2>
+
+        <div class="">
+            <div class="col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <input type="text" maxlength="18" ui-mask="99.999.999/9999-99" placeholder="00.000.000/0000-00" title="CNPJ" ng-blur="controller.completarEmpresa()" ng-disabled="controller.bloquearCamposEmpresa" ng-model="controller.cadastroParam.cnpjEmpresa" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <input type="text" maxlength="50" ng-model="controller.cadastroParam.razaoSocial" ng-disabled="controller.bloquearCamposEmpresa" placeholder="Razão Social" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <input type="text" maxlength="50" ng-model="controller.cadastroParam.nomeFantasia" ng-disabled="controller.bloquearCamposEmpresa" placeholder="Nome Fantasia" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+                <div class="form-group">                   
+                    <select class="form-control" ng-model="controller.cadastroParam.idSetor" ng-disabled="controller.bloquearCamposEmpresa" ng-options="opt.id as opt.nome for opt in controller.setores"></select>
+                </div>              
+           </div>
+
+            <div class="col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <select class="form-control" ng-model="controller.cadastroParam.idRamo" ng-disabled="controller.bloquearCamposEmpresa" ng-options="opt.id as opt.nome for opt in controller.ramos"></select>
+                </div>
+            </div>
+        <div class="clearfix"></div>
+
+
+        <h2>Dados do Usuário</h2>
+
+        <div class="">
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <input type="text" ng-model="controller.cadastroParam.cpf" ng-blur="controller.completarColaborador()" ng-disabled="controller.bloquearCampos" ui-mask="999.999.999-99" maxlength="14" class="form-control" placeholder="000.000.000-00" title="CPF" />
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <input type="text" maxlength="50" ng-model="controller.cadastroParam.nomeColaborador" ng-disabled="controller.bloquearCampos" placeholder="Nome do Usuário" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <input type="text" maxlength="50" ng-model="controller.cadastroParam.emailColaborador" ng-disabled="controller.bloquearCampos" placeholder="E-mail do Usuário" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <input type="text" placeholder="" ui-mask="(99)99999-9999" ng-disabled="controller.bloquearCampos" validate="minlength[10], maxlength[14], phone-validator" maxlength="14" ng-model="controller.cadastroParam.telefoneColaborador" class="form-control" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <select class="form-control" ng-model="controller.cadastroParam.idUf" ng-change="controller.carregaListaMunicipio()" ng-disabled="controller.bloquearCampos" ng-options="opt.idUF as opt.uf for opt in controller.ufs"></select>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <select class="form-control" ng-model="controller.cadastroParam.idMunicipio" ng-disabled="controller.bloquearCampos" ng-options="mun.idMunicipio as mun.municipio for mun in controller.municipios"></select>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <input type="password" maxlength="50" value="" ng-model="controller.cadastroParam.senha" ng-disabled="controller.bloquearCampos" placeholder="Senha" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <input type="password" maxlength="50" value="" ng-model="controller.cadastroParam.confirmacaoSenha" ng-disabled="controller.bloquearCampos" placeholder="Confirmação da Senha" class="form-control" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <select class="form-control" ng-model="controller.cadastroParam.cargo" ng-disabled="controller.bloquearCampos" ng-options="car.id as car.nome for car in controller.cargos"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+
+        <div class="container">
+            <div class="no-padding-xs col-xs-6">
+                <button class="btn btn-block-xs btn-cancel pull-right btn-maior" ng-click="controller.voltar()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    CANCELAR
+                </button>
+            </div>
+            <div class="no-padding-xs col-xs-6">
+                <button class="btn btn-block-xs btn-blue btn-maior" ng-click="controller.acessar()">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    ACESSAR
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+    </div>
+</form>

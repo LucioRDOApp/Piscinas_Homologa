@@ -1,0 +1,180 @@
+﻿<div ng-controller="NavController as controller" ng-hide="controller.visible" ng-init="controller.init()" class="topo">
+    <nav class="navbar bg-blue-default ">
+
+        <div class="no-padding">
+            <a class="navbar-brand logo pointer" ng-click="controller.mudarObra()">
+                <i class="icon-logo"></i>
+            </a>
+
+            <div class="menu-lateral">
+
+                <ul class="nav-mobile">
+
+                    <li class="menu-container">
+                        <input id="menu-toggle" type="checkbox">
+
+                        <label for="menu-toggle" class="menu-button">
+                            <svg class="icon-open" viewBox="0 0 24 24">
+                                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                            </svg>
+                            <svg class="icon-close" viewBox="0 0 100 100">
+                                <path d="M83.288 88.13c-2.114 2.112-5.575 2.112-7.69 0L53.66 66.188c-2.113-2.112-5.572-2.112-7.686 0l-21.72 21.72c-2.114 2.113-5.572 2.113-7.687 0l-4.693-4.692c-2.114-2.114-2.114-5.573 0-7.688l21.72-21.72c2.112-2.115 2.112-5.574 0-7.687L11.87 24.4c-2.114-2.113-2.114-5.57 0-7.686l4.842-4.842c2.113-2.114 5.57-2.114 7.686 0l21.72 21.72c2.114 2.113 5.572 2.113 7.688 0l21.72-21.72c2.115-2.114 5.574-2.114 7.688 0l4.695 4.695c2.112 2.113 2.112 5.57-.002 7.686l-21.72 21.72c-2.112 2.114-2.112 5.573 0 7.686L88.13 75.6c2.112 2.11 2.112 5.572 0 7.687l-4.842 4.84z" />
+                            </svg>
+                        </label>
+
+
+                        <div ng-controller="NavController as controller" class="menu-sidebar" ng-hide="controller.visible">
+
+                            <div class="scrollbar-inner">
+                                <ul class="nav navbar-nav navbar-right user">
+                                    <li>
+                                        <a class="collapsed" data-toggle="collapse" href="#user-menu" role="button" aria-expanded="false" aria-controls="user-menu">
+                                            <span class="image">
+                                                <img src="Assets/images/user.png" alt="">
+                                            </span>
+                                            <p>{{ controller.userData.usuario.nomeUsuario }}</p>
+                                        </a>
+                                        <ul class="collapse multi-collapse" id="user-menu">
+                                            <li><a class="pointer" ng-click="controller.mudarSenha()">TROCAR SENHA</a></li>
+                                            <li><a href="sair">SAIR</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <!-- SUBMENUS -->
+                                <!--<ul class="nav navbar-nav navbar-right ball-hover">
+                                <li class="btn-tooltip" data-toggle="tooltip" data-placement="left">
+                                    <a class="collapsed" data-toggle="collapse" href="#cadastro-menu" role="button" aria-expanded="false" aria-controls="cadastro-menu">-->
+                                <!--//data-toggle="collapse"-->
+                                <!--<i class="fa fa-wpforms"></i>
+                                    <span>Cadastro</span>
+                                </a>
+                                <ul class="nav navbar-nav navbar-right ball-hover collapse multi-collapse" id="cadastro-menu">
+                                    <li ng-repeat="pagina in controller.submenuCadastro" class="btn-tooltip" data-toggle="tooltip" data-placement="left">
+                                        <a ng-click="controller.goto(pagina)" class="collapsed collapsed-menu pointer">-->
+                                <!--//data-toggle="collapse"-->
+                                <!--<i class="{{pagina.CssClass}}"></i>
+                                                <span>{{pagina.titulo}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="btn-tooltip" data-toggle="tooltip" data-placement="left">
+                                    <a class="collapsed" data-toggle="collapse" href="#relatorios-menu" role="button" aria-expanded="false" aria-controls="relatorios-menu">-->
+                                <!--//data-toggle="collapse"-->
+                                <!--<i class="icon-dashboard"></i>
+                                    <span>Relatórios</span>
+                                </a>
+                                <ul class="nav navbar-nav navbar-right ball-hover collapse multi-collapse" id="relatorios-menu">
+                                    <li ng-repeat="pagina in controller.submenuRelatorio" class="btn-tooltip" data-toggle="tooltip" data-placement="left">
+                                        <a ng-click="controller.goto(pagina)" class="collapsed collapsed-menu pointer">-->
+                                <!--//data-toggle="collapse"-->
+                                <!--<i class="{{pagina.CssClass}}"></i>
+                                                    <span>{{pagina.titulo}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>-->
+
+                                <ul class="nav navbar-nav navbar-right ball-hover">
+                                    <li ng-repeat="pagina in controller.userData.menu.listaPagina" class="btn-tooltip" data-toggle="tooltip" data-placement="left">
+                                        <a ng-click="controller.goto(pagina)" class="collapsed collapsed-menu pointer">
+                                            <!--//data-toggle="collapse"-->
+                                            <i class="{{pagina.CssClass}}"></i>
+                                            <span>{{pagina.titulo}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+
+                    </li>
+                </ul>
+                <h2 id="tituloObra">{{ controller.userData.obraColaborador.nomeObra.toUpperCase() }}</h2>
+            </div>
+
+        </div>
+        <div class="no-padding">
+            <div class="collapse navbar-collapse  menu">
+                <ul class="nav navbar-nav navbar-right user">
+                    <li>
+                        <a class="dropdown-toggle pointer" data-toggle="dropdown">
+                            <span class="image">
+                                <img src="Assets/images/user.png" alt="">
+                            </span>
+                            <p>{{ controller.userData.usuario.nomeUsuario }}</p>
+                            <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="pointer" ng-click="controller.mudarSenha()">TROCAR SENHA</a></li>
+                            <li><a href="sair">SAIR</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right ball-hover">
+                    <li class="btn-tooltip pointer" data-toggle="tooltip" data-placement="left" title="Laudos">
+                        <a class="pointer" ng-hide="controller.desabilitarBotaoLogomarca" ng-click="controller.listagemLaudos()">
+                            <i class="fa fa-folder"></i>
+                        </a>
+                    </li>
+
+                    <li class="btn-tooltip pointer" ng-click="controller.dashboard()" permission="acessarDashboard" permission-route="/dashboard/index" data-toggle="tooltip" data-placement="left" title="DASHBOARD DA OBRA">
+                        <a class="pointer">
+                            <i class="icon-dashboard"></i>
+                        </a>
+                    </li>
+
+                    <li class="btn-tooltip" data-toggle="tooltip" data-placement="left" title="Relatórios diários">
+                        <a class="pointer" ng-hide="controller.desabilitarBotaoLogomarca" ng-click="controller.listagemRdos()">
+                            <i class="icon-rdo-novo_2"></i>
+                        </a>
+                    </li>
+                    <li class="btn-tooltip" data-toggle="tooltip" data-placement="left" title="TAREFAS">
+                        <a class="pointer" ng-hide="controller.desabilitarBotaoLogomarca" ng-click="controller.tarefaCards()">
+                            <i class="fa fa-th"></i>
+                        </a>
+                    </li>
+                    <li class="btn-tooltip" data-toggle="tooltip" data-placement="left" title="DASHBOARD DOS LAUDOS" permission="visualizar" permission-route="/dashboardGrafico">
+                        <a class="pointer btn-icon-topo" ng-click="controller.redirectDashboard()">
+                            <i class="fa fa-pie-chart"></i>
+                        </a>
+                    </li>
+                    <li class="btn-tooltip" data-toggle="tooltip" data-placement="left" title="DASHBOARD GERAL" permission="visualizar" permission-route="/chart">
+                        <a class="pointer btn-icon-topo" ng-click="controller.redirectCharts()">
+                            <i class="fa fa-bar-chart"></i>
+                        </a>
+                    </li>
+                    <li class="btn-tooltip" data-toggle="tooltip" data-placement="left" title="NOVA UNIDADE ESCOLAR" permission="visualizar" permission-route="/obra/cadastro">
+                        <a class="pointer btn-icon-topo" ng-click="controller.novaObra()">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </li>
+                </ul>
+
+
+
+            </div>
+        </div>
+
+    </nav>
+</div>
+
+
+<script>
+    /*
+    function changeInsedBackground() {
+        $('.base').removeClass('tema-azul-escuro');
+    }
+
+    function changeOutsideBackground() {
+        $('.base').addClass('tema-azul-escuro');
+    }*/
+
+</script>
+

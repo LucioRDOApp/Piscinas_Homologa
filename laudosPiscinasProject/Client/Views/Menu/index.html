@@ -1,0 +1,81 @@
+﻿<!-- =========================CONTEUDO ================================= -->
+<section ng-controller="MenuController as controller" ng-init="controller.carregarLista()">
+
+    <div class="panel-heading">
+        <h3>Menu</h3>
+    </div>
+
+    <!-- ====================FILTRO=========================== -->
+        <div class="panel">
+
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Descrição*</label>
+                    <input type="text" class="form-control" ng-model="controller.filter.titulo" autofocus> 
+                    <span class="material-input"></span>
+                </div>
+            </div>
+            
+            <div class="col-md-12 col-xs-12">
+                <div class="pull-right">
+                    <button class="btn btn-blue" ng-click="controller.carregarLista()">
+                        <i class="fa fa-search"></i>
+                        PESQUISAR
+                    </button>
+                    <button class="btn btn-blue" ng-click="controller.add()">
+                        <i class="fa fa-plus"></i>
+                        NOVO
+                    </button>                                        
+                </div>
+            </div>
+
+        </div>
+    <!-- ====================FIM FILTRO========================== -->
+
+
+    <div class="lista-tarefas">
+        <div class="tabela table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            DESCRIÇÃO
+                        </th>
+                        <th>
+                            ALIAS
+                        </th>
+                        <th colspan="3" scope="col" width="">
+                            AÇÕES
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="menu in controller.menus">
+                    <tr>
+                        <td>
+                            {{menu.men_nm_titulo}}
+                        </td>
+                        <td>
+                            {{menu.men_ds_alias}}
+                        </td>
+                        <td>
+                            <button class="btn btn-simple btn-just-icon" title="Editar" ng-click="controller.editar(menu)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <td class="fadeout-xs">
+                            <button class="btn btn-simple btn-just-icon" title="Excluir" ng-click="controller.delete(menu)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>              
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</section>
+<!-- =========================FIM CONTEUDO ================================= -->

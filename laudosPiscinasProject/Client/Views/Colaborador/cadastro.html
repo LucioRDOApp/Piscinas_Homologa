@@ -1,0 +1,253 @@
+﻿<section ng-controller="ColaboradorController as controller" ng-init="controller.carregarEdicao(); controller.carregarGrupos(); controller.carregaListaUF(); controller.carregarCargos();">
+
+    <div class="panel-heading">
+        <h3>Colaborador</h3>
+    </div>
+
+    <form id="form-cadastro-colaborador" class="panel">
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">CPF<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <input id="cpfColaborador" type="text" ng-blur="controller.completarColaborador()" ng-disabled="!controller.perfilColaborador && controller.desabilitarCpf" ui-mask="999.999.999-99" maxlength="14" class="form-control" ng-model="controller.cadastroParam.cpf">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group is-empty">
+                <label class="control-label">Perfil do Colaborador<span style="color:red">*</span></label>
+                <select class="form-control" ng-change="controller.verificaPerfilColaborador();" ng-model="controller.cadastroParam.grupo" ng-disabled="controller.desabilitarCampos2" ng-options="opt.id as opt.nome for opt in controller.grupos"></select>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+                <label class="control-label">Nome do Colaborador<span style="color:red">*</span></label>
+                <input type="text" autofocus ng-disabled="controller.desabilitarCampos" maxlength="50" class="form-control" ng-model="controller.cadastroParam.nome">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Cargo<span style="color:red">*</span></label>
+                <select class="form-control" ng-model="controller.cadastroParam.cargo" ng-disabled="controller.desabilitarCampos" ng-options="car.id as car.nome for car in controller.cargos"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Sexo<span style="color:red" ng-if="!controller.perfilColaborador">*</span></label>
+                <select class="form-control" ng-model="controller.cadastroParam.sexo" ng-disabled="controller.desabilitarCampos" ng-options="sx.id as sx.nome for sx in controller.sexo"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data de Nascimento<span style="color:red" ng-if="!controller.perfilColaborador">*</span></label>
+                <input type="text" class="datepicker-here form-control dataNascimento" ng-disabled="controller.desabilitarCampos" ui-mask="99/99/9999" placeholder="" data-language='pt-BR' value="" ng-model="controller.cadastroParam.dataNascimento">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Telefone Principal<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <input id="telefonePrincipal" data-inputmask-clearmaskonlostfocus="false" type="text" class="form-control" maxlength="15" placeholder="" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.telefonePrincipal">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Telefone Secundário</label>
+                <input id="telefoneSecundario" data-inputmask-clearmaskonlostfocus="false" type="text" class="form-control" maxlength="15" placeholder="" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.telefoneSecundario">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">E-mail<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="50" ng-model="controller.cadastroParam.email">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">CREA</label>
+                <input type="text" class="form-control" maxlength="20" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.crea">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Data da Contratação</label>
+                <input type="text" class="datepicker-here form-control dataContratacao" ng-disabled="controller.desabilitarCampos" ui-mask="99/99/9999" placeholder="" data-language='pt-BR' value="" ng-model="controller.cadastroParam.dataContratacao">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+                <label class="control-label">Logradouro<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <input type="text" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="50" ng-model="controller.cadastroParam.logradouro">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Número<span style="color:red">*</span></label>
+                <input type="text" class="form-control" maxlength="5" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.numeroEndereco">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+                <label class="control-label">Complemento</label>
+                <input type="text" class="form-control" maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.complemento">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Bairro</label>
+                <input type="text" class="form-control" maxlength="50" ng-disabled="controller.desabilitarCampos" ng-model="controller.cadastroParam.bairro">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">UF<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <select class="form-control ddluf" ng-model="controller.cadastroParam.uf" ng-disabled="controller.desabilitarCampos" ng-change="controller.carregaListaMunicipio('cadastro')" ng-options="opt.idUF as opt.uf for opt in controller.ufs"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group is-empty">
+                <label class="control-label">Município<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <select class="form-control ddlmunicipio" ng-model="controller.cadastroParam.idMunicipio" ng-disabled="controller.desabilitarCampos" ng-options="mun.idMunicipio as mun.municipio for mun in controller.municipios"></select>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">CEP<span style="color:red">*</span></label>
+                <input type="text" class="form-control" ui-mask="99999-999" ng-disabled="controller.desabilitarCampos" maxlength="9" placeholder="" ng-model="controller.cadastroParam.cep">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6" ng-if="!controller.perfilColaborador">
+            <div class="form-group">
+                <label class="control-label">Senha<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <input type="password" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="20" ng-model="controller.cadastroParam.senha">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6" ng-if="!controller.perfilColaborador">
+            <div class="form-group">
+                <label class="control-label">Confirmação Senha<span ng-if="!controller.perfilColaborador" style="color:red">*</span></label>
+                <input type="password" class="form-control" ng-disabled="controller.desabilitarCampos" maxlength="20" ng-model="controller.cadastroParam.confirmacaoSenha">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <!--<div class="col-md-6 col-sm-12 col-xs-12" permission="adicionarFoto">
+
+        <div class="form-group">
+
+            <input type="file" name="file" ng-model="imageFileColaborador" base-sixty-four-input ng-disabled="controller.desabilitarCampos" />
+
+            <label for="file" class="sr-only">Foto</label>
+
+            <div class="input-group col-xs-12">
+                <label class="col-xs-12 control-label">Foto</label>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 no-padding-left">
+
+
+                    <input type="text" ng-model="controller.cadastroParam.descricaoFoto" name="filename" class="form-control" ng-disabled="controller.desabilitarCampos" placeholder="No file selected" readonly>
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                </div>
+
+                <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12 no-padding">
+                    <div class="btn btn-blue">
+
+                        ESCOLHER ARQUIVO
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>-->
+        <!--<div class="col-md-6 col-sm-12 col-xs-12" permission="adicionarFoto">
+
+        <div class="form-group">
+
+            <input type="file" name="file" ng-disabled="controller.desabilitarCampos" ng-model="imageFileAssinaturaColaborador" base-sixty-four-input />
+
+            <label for="file" class="sr-only">Assinatura</label>
+
+            <div class="input-group col-xs-12">
+                <label class="col-xs-12 control-label">Assinatura</label>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 no-padding-left">
+
+
+                    <input type="text" name="filename" ng-model="controller.cadastroParam.descricaoAssinatura" ng-disabled="controller.desabilitarCampos" class="form-control" placeholder="No file selected" readonly>
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                </div>
+
+                <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12 no-padding">
+                    <div class="btn btn-blue">
+
+                        ESCOLHER ARQUIVO
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>-->
+
+
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.voltar()">
+                    <i class="fa fa-arrow-left"></i>
+                    VOLTAR
+                </button>
+                <button class="btn btn-blue" ng-disabled="controller.desabilitarCampos" ng-click="controller.salvar()">
+                    <i class="fa fa-save"></i>
+                    SALVAR
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</section>
+
+<script>
+
+    $(document).ready(function () {
+        $("input#telefonePrincipal").inputmask({
+            mask: ["(99) 9999-9999", "(99) 99999-9999", ],
+            keepStatic: true
+        });
+
+        $("input#telefoneSecundario").inputmask({
+            mask: ["(99) 9999-9999", "(99) 99999-9999", ],
+            keepStatic: true
+        });
+    });
+
+</script>

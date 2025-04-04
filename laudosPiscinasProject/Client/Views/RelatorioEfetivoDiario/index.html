@@ -1,0 +1,41 @@
+﻿<section ng-controller="RelatorioEfetivoDiarioController as controller" ng-init="">
+
+    <div class="panel-heading">
+        <h3>Relatório de Efetivo Diário</h3>
+    </div>
+
+    <div class="panel">
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Data Inicial<span style="color:red">*</span></label>
+                <input type="text" class="datepicker-here form-control txbDataInicial" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="filtroParam.dataInicial">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Data Final<span style="color:red">*</span></label>
+                <input type="text" class="datepicker-here form-control txbDataFinal" ui-mask="99/99/9999" model-view-value="true" placeholder="dd/mm/aaaa" data-language='pt-BR' value="" ng-model="filtroParam.dataFinal">
+                <span class="material-input"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.gerarPDF()">
+                    <i class="fa fa-plus"></i>
+                    Gerar PDF
+                </button>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-blue" ng-click="controller.gerarExcel()">
+                    <i class="fa fa-plus"></i>
+                    Gerar Excel
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</section>

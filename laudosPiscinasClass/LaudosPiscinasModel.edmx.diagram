@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="209a9fe9caed4e91ba3c2c5f2968262e" Name="Diagram1">
+        <EntityTypeShape EntityType="LaudosPiscinasModel.acao" Width="1.5" PointX="6.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.acidente" Width="1.5" PointX="16" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.acidente_colaborador" Width="1.5" PointX="18.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.assinatura_rdo" Width="1.5" PointX="23.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.cargo" Width="1.5" PointX="11.25" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.colaborador" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.efetivo" Width="1.5" PointX="10.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.efetivo_status" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.empresa" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.equipamento" Width="1.5" PointX="11.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.etapa" Width="1.5" PointX="10.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.grupo" Width="1.5" PointX="6" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.grupo_pagina_acao" Width="1.5" PointX="11.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.historico_tarefa_colaborador" Width="1.5" PointX="21" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.historico_tarefa_equipamento" Width="1.5" PointX="22" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.historico_tarefa_rdo" Width="1.5" PointX="18.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.imagem" Width="1.5" PointX="16" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.improdutividade" Width="1.5" PointX="14.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.laudo" Width="1.5" PointX="16.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.licenca" Width="1.5" PointX="0.75" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.marca" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.menu" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.menu_pagina" Width="1.5" PointX="14" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.modelo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.municipio" Width="1.5" PointX="1.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.obra" Width="1.5" PointX="8.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.obra_colaborador" Width="1.5" PointX="13.5" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.obra_equipamento" Width="1.5" PointX="13.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.obra_tarefa_colaborador" Width="1.5" PointX="21" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.obra_tarefa_equipamento" Width="1.5" PointX="19" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.pagina" Width="1.5" PointX="6.75" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.pagina_acao" Width="1.5" PointX="9" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.parametro" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.perfil_assinante" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.ramo" Width="1.5" PointX="0.75" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.rdo" Width="1.5" PointX="16.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.rdo_imagem" Width="1.5" PointX="18.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.rdo_tarefa" Width="1.5" PointX="21.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.setor" Width="1.5" PointX="0.75" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.status_rdo" Width="1.5" PointX="14.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.status_tarefa" Width="1.5" PointX="11.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.tarefa" Width="1.5" PointX="13.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.tipo_equipamento" Width="1.5" PointX="9" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.uf" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.unidade_de_medida" Width="1.5" PointX="11.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.usuario" Width="1.5" PointX="8.25" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaudosPiscinasModel.historico_login" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LaudosPiscinasModel.pagina_acao_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.acidente_colaborador_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.acidente_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.acidente_colaborador_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.assinatura_rdo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.assinatura_rdo_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_colaborador_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.colaborador_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.empresa_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.laudo_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_colaborador_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.tarefa_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.efetivo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.efetivo_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.efetivo_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.empresa_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.empresa_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.empresa_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.empresa_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.equipamento_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_equipamento_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.etapa_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.tarefa_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.grupo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.grupo_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.grupo_pagina_acao_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_colaborador_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.usuario_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.grupo_pagina_acao_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_colaborador_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_colaborador_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_equipamento_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_equipamento_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_rdo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_rdo_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.historico_tarefa_rdo_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.imagem_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_imagem_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.laudo_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.laudo_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.menu_pagina_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.menu_pagina_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.menu_pagina_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.municipio_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_colaborador_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_equipamento_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_tarefa_colaborador_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_tarefa_equipamento_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_tarefa_colaborador_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.obra_tarefa_equipamento_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.pagina_acao_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_imagem_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_tarefa_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.rdo_tarefa_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.tarefa_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="LaudosPiscinasModel.tarefa_ibfk_4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
